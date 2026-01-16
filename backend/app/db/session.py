@@ -16,16 +16,21 @@ from app.core.logging import logger
 
 
 # Create async engine
-engine = create_async_engine(
-    settings.DATABASE_URL,
-    echo=settings.DATABASE_ECHO,
-    future=True,
-    pool_pre_ping=True,  # Verify connections before using
-    poolclass=QueuePool if not settings.is_development else NullPool,
-    pool_size=10,  # Max connections in pool
-    max_overflow=20,  # Max overflow connections
-    pool_recycle=3600,  # Recycle connections after 1 hour
-)
+_engine_kwargs = {
+    "echo": settings.DATABASE_ECHO,
+    "future": True,
+    "pool_pre_ping": True,  # Verify connections before using
+}
+
+if settings.is_development:
+    _engine_kwargs["poolclass"] = NullPool
+else:
+    _engine_kwargs["poolclass"] = QueuePool
+    _engine_kwargs["pool_size"] = 10  # Max connections in pool
+    _engine_kwargs["max_overflow"] = 20  # Max overflow connections
+    _engine_kwargs["pool_recycle"] = 3600  # Recycle connections after 1 hour
+
+engine = create_async_engine(settings.DATABASE_URL, **_engine_kwargs)
 
 # Create async session factory
 AsyncSessionLocal = async_sessionmaker(
@@ -64,21 +69,13 @@ async def get_db() -> AsyncGenerator[AsyncSession, None]:
 
 async def init_db():
     """Initialize database - create all tables."""
-    from app.models.base import Base
-    
-    # Import all models here to ensure they're registered
-    from app.models.user import User
-    from app.models.language import Language
-    from app.models.doc_section import DocSection
-    from app.models.code_example import CodeExample
-    from app.models.learning_path import LearningPath
-    from app.models.user_progress import UserProgress
-    from app.models.practice_problem import PracticeProblem
-    from app.models.video_resource import VideoResource
-    from app.models.bookmark import Bookmark
-    from app.models.user_note import UserNote
-    from app.models.discussion import Discussion
-    from app.models.discussion_comment import DiscussionComment
+    # Import all models to register them with SQLAlchemy
+    from app.models import (
+        Base, User, Language, DocSection, CodeExample,
+        # LearningPath, UserProgress, PracticeProblem,
+        # VideoResource, Bookmark, UserNote, Discussion,
+        # DiscussionComment
+    )
     
     async with engine.begin() as conn:
         # Create all tables

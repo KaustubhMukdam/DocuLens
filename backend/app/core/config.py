@@ -33,6 +33,26 @@ class Settings(BaseSettings):
     DATABASE_URL: str
     DATABASE_ECHO: bool = False
     
+    @field_validator("DATABASE_URL", mode="before")
+    @classmethod
+    def ensure_async_driver(cls, v: str) -> str:
+        """Ensure DATABASE_URL uses asyncpg driver for async SQLAlchemy."""
+        from urllib.parse import urlparse, parse_qs, urlencode, urlunparse
+        # Convert to asyncpg driver
+        if v.startswith("postgresql://"):
+            v = v.replace("postgresql://", "postgresql+asyncpg://", 1)
+        elif v.startswith("postgres://"):
+            v = v.replace("postgres://", "postgresql+asyncpg://", 1)
+        # Remove incompatible parameters for asyncpg
+        parsed = urlparse(v)
+        params = parse_qs(parsed.query)
+        # Remove parameters that asyncpg doesn't support
+        for param in ["sslmode", "channel_binding"]:
+            params.pop(param, None)
+        new_query = urlencode(params, doseq=True)
+        v = urlunparse(parsed._replace(query=new_query))
+        return v
+    
     # Redis
     REDIS_URL: str
     

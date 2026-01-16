@@ -1,0 +1,48 @@
+2026-01-16 08:18:42 | INFO     | app.core.logging:setup_logging:52 - Logging configured - Level: INFO
+2026-01-16 08:18:42 | INFO     | app.core.logging:setup_logging:53 - Log file: logs/app.log
+2026-01-16 08:18:42 | INFO     | app.main:lifespan:31 - Starting DocuLens v1.0.0
+2026-01-16 08:18:42 | INFO     | app.main:lifespan:32 - Environment: development
+2026-01-16 08:18:42 | ERROR    | app.main:lifespan:39 - Failed to connect to database: No module named 'app.models.learning_path'
+2026-01-16 08:19:17 | INFO     | app.core.logging:setup_logging:52 - Logging configured - Level: INFO
+2026-01-16 08:19:17 | INFO     | app.core.logging:setup_logging:53 - Log file: logs/app.log
+2026-01-16 08:19:17 | INFO     | app.main:lifespan:31 - Starting DocuLens v1.0.0
+2026-01-16 08:19:17 | INFO     | app.main:lifespan:32 - Environment: development
+2026-01-16 08:19:17 | ERROR    | app.main:lifespan:39 - Failed to connect to database: cannot import name 'LearningPath' from 'app.models' (D:\Programming\portfolio_projects\DocuLens\backend\app\models\__init__.py)
+2026-01-16 08:19:43 | INFO     | app.core.logging:setup_logging:52 - Logging configured - Level: INFO
+2026-01-16 08:19:43 | INFO     | app.core.logging:setup_logging:53 - Log file: logs/app.log
+2026-01-16 08:19:43 | INFO     | app.main:lifespan:31 - Starting DocuLens v1.0.0
+2026-01-16 08:19:43 | INFO     | app.main:lifespan:32 - Environment: development
+2026-01-16 08:19:43 | ERROR    | app.main:lifespan:39 - Failed to connect to database: cannot import name 'LearningPath' from 'app.models' (D:\Programming\portfolio_projects\DocuLens\backend\app\models\__init__.py)
+2026-01-16 08:21:44 | INFO     | app.core.logging:setup_logging:52 - Logging configured - Level: INFO
+2026-01-16 08:21:44 | INFO     | app.core.logging:setup_logging:53 - Log file: logs/app.log
+2026-01-16 08:21:44 | INFO     | app.main:lifespan:31 - Starting DocuLens v1.0.0
+2026-01-16 08:21:44 | INFO     | app.main:lifespan:32 - Environment: development
+2026-01-16 08:21:44 | ERROR    | app.main:lifespan:39 - Failed to connect to database: cannot import name 'LearningPath' from 'app.models' (D:\Programming\portfolio_projects\DocuLens\backend\app\models\__init__.py)
+2026-01-16 08:22:38 | INFO     | app.core.logging:setup_logging:52 - Logging configured - Level: INFO
+2026-01-16 08:22:38 | INFO     | app.core.logging:setup_logging:53 - Log file: logs/app.log
+2026-01-16 08:22:38 | INFO     | app.main:lifespan:31 - Starting DocuLens v1.0.0
+2026-01-16 08:22:38 | INFO     | app.main:lifespan:32 - Environment: development
+2026-01-16 08:22:38 | ERROR    | app.main:lifespan:39 - Failed to connect to database: connect() got an unexpected keyword argument 'sslmode'
+2026-01-16 08:23:21 | INFO     | app.core.logging:setup_logging:52 - Logging configured - Level: INFO
+2026-01-16 08:23:21 | INFO     | app.core.logging:setup_logging:53 - Log file: logs/app.log
+2026-01-16 08:23:21 | INFO     | app.main:lifespan:31 - Starting DocuLens v1.0.0
+2026-01-16 08:23:21 | INFO     | app.main:lifespan:32 - Environment: development
+2026-01-16 08:23:22 | ERROR    | app.main:lifespan:39 - Failed to connect to database: database "neondb&channel_binding=require" does not exist
+2026-01-16 08:23:58 | INFO     | app.core.logging:setup_logging:52 - Logging configured - Level: INFO
+2026-01-16 08:23:58 | INFO     | app.core.logging:setup_logging:53 - Log file: logs/app.log
+2026-01-16 08:23:58 | INFO     | app.main:lifespan:31 - Starting DocuLens v1.0.0
+2026-01-16 08:23:58 | INFO     | app.main:lifespan:32 - Environment: development
+2026-01-16 08:24:11 | INFO     | app.db.session:init_db:84 - Database initialized successfully
+2026-01-16 08:24:11 | INFO     | app.main:lifespan:37 - Database connected successfully
+2026-01-16 08:24:15 | INFO     | app.main:lifespan:58 - Shutting down application
+2026-01-16 08:24:15 | INFO     | app.db.session:close_db:90 - Database connection closed
+2026-01-16 08:24:15 | INFO     | app.main:lifespan:60 - Application shutdown complete
+2026-01-16 08:24:33 | INFO     | app.core.logging:setup_logging:52 - Logging configured - Level: INFO
+2026-01-16 08:24:33 | INFO     | app.core.logging:setup_logging:53 - Log file: logs/app.log
+2026-01-16 08:24:33 | INFO     | app.main:lifespan:31 - Starting DocuLens v1.0.0
+2026-01-16 08:24:33 | INFO     | app.main:lifespan:32 - Environment: development
+2026-01-16 08:24:37 | INFO     | app.db.session:init_db:84 - Database initialized successfully
+2026-01-16 08:24:37 | INFO     | app.main:lifespan:37 - Database connected successfully
+2026-01-16 08:25:39 | INFO     | app.main:lifespan:58 - Shutting down application
+2026-01-16 08:25:39 | INFO     | app.db.session:close_db:90 - Database connection closed
+2026-01-16 08:25:39 | INFO     | app.main:lifespan:60 - Application shutdown complete
