@@ -5,7 +5,7 @@ User model for authentication and user management.
 from datetime import datetime
 from typing import Optional
 
-from sqlalchemy import String, Boolean, DateTime, Enum
+from sqlalchemy import String, Boolean, DateTime, Enum as SQLEnum
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 import enum
 
@@ -56,7 +56,7 @@ class User(Base):
     
     # Learning preferences
     skill_level: Mapped[SkillLevel] = mapped_column(
-        Enum(SkillLevel),
+        SQLEnum(SkillLevel),
         default=SkillLevel.BEGINNER,
         nullable=False
     )

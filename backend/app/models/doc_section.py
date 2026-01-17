@@ -6,7 +6,7 @@ from typing import Optional
 from uuid import UUID
 import enum
 
-from sqlalchemy import String, Text, Integer, Boolean, Enum, ForeignKey
+from sqlalchemy import String, Text, Integer, Boolean, Enum as SQLEnum, ForeignKey
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 from sqlalchemy.dialects.postgresql import UUID as PGUUID
 
@@ -80,7 +80,7 @@ class DocSection(Base):
     )
     
     difficulty: Mapped[Difficulty] = mapped_column(
-        Enum(Difficulty),
+        SQLEnum(Difficulty),
         default=Difficulty.MEDIUM,
         nullable=False
     )

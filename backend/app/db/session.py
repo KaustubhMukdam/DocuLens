@@ -72,9 +72,9 @@ async def init_db():
     # Import all models to register them with SQLAlchemy
     from app.models import (
         Base, User, Language, DocSection, CodeExample,
-        # LearningPath, UserProgress, PracticeProblem,
-        # VideoResource, Bookmark, UserNote, Discussion,
-        # DiscussionComment
+        LearningPath, UserProgress, PracticeProblem,
+        VideoResource, Bookmark, UserNote, Discussion,
+        DiscussionComment
     )
     
     async with engine.begin() as conn:
