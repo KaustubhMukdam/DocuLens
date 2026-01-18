@@ -38,20 +38,37 @@ class Settings(BaseSettings):
     def ensure_async_driver(cls, v: str) -> str:
         """Ensure DATABASE_URL uses asyncpg driver for async SQLAlchemy."""
         from urllib.parse import urlparse, parse_qs, urlencode, urlunparse
-        # Convert to asyncpg driver
+        
+        # Handle empty/None values
+        if not v:
+            # Fallback for testing
+            return "sqlite+aiosqlite:///:memory:"
+        
+        # Skip processing for SQLite URLs - they don't need modification
+        if v.startswith("sqlite"):
+            return v
+        
+        # Convert to asyncpg driver for PostgreSQL
         if v.startswith("postgresql://"):
             v = v.replace("postgresql://", "postgresql+asyncpg://", 1)
         elif v.startswith("postgres://"):
             v = v.replace("postgres://", "postgresql+asyncpg://", 1)
-        # Remove incompatible parameters for asyncpg
-        parsed = urlparse(v)
-        params = parse_qs(parsed.query)
-        # Remove parameters that asyncpg doesn't support
-        for param in ["sslmode", "channel_binding"]:
-            params.pop(param, None)
-        new_query = urlencode(params, doseq=True)
-        v = urlunparse(parsed._replace(query=new_query))
+        
+        # Only process PostgreSQL URLs for parameter cleanup
+        if v.startswith("postgresql+asyncpg://"):
+            # Remove incompatible parameters for asyncpg
+            parsed = urlparse(v)
+            params = parse_qs(parsed.query)
+            
+            # Remove parameters that asyncpg doesn't support
+            for param in ["sslmode", "channel_binding"]:
+                params.pop(param, None)
+            
+            new_query = urlencode(params, doseq=True)
+            v = urlunparse(parsed._replace(query=new_query))
+        
         return v
+
     
     # Redis
     REDIS_URL: str

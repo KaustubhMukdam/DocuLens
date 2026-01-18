@@ -25,7 +25,7 @@ router = APIRouter()
 @router.get("/{language_slug}/sections", response_model=List[DocSectionSummary])
 async def get_language_sections(
     language_slug: str,
-    path_type: Optional[str] = Query(None, regex="^(quick|deep)$"),
+    path_type: Optional[str] = Query(None, pattern="^(quick|deep)$"),
     db: AsyncSession = Depends(get_db),
     current_user: Optional[User] = Depends(get_optional_current_user)
 ):

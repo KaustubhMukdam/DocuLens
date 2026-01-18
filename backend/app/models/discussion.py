@@ -4,7 +4,7 @@ from uuid import UUID
 
 from sqlalchemy import String, Text, Integer, Boolean, ForeignKey
 from sqlalchemy.orm import Mapped, mapped_column, relationship
-from sqlalchemy.dialects.postgresql import UUID as PGUUID
+from app.models.base import GUID
 
 from app.models.base import Base
 
@@ -15,14 +15,14 @@ class Discussion(Base):
     __tablename__ = "discussions"
     
     doc_section_id: Mapped[UUID] = mapped_column(
-        PGUUID(as_uuid=True),
+        GUID(),
         ForeignKey("doc_sections.id", ondelete="CASCADE"),
         nullable=False,
         index=True
     )
     
     user_id: Mapped[UUID] = mapped_column(
-        PGUUID(as_uuid=True),
+        GUID(),
         ForeignKey("users.id", ondelete="CASCADE"),
         nullable=False,
         index=True

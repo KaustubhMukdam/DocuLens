@@ -8,7 +8,7 @@ import enum
 
 from sqlalchemy import String, Text, Integer, Boolean, Enum as SQLEnum, ForeignKey
 from sqlalchemy.orm import Mapped, mapped_column, relationship
-from sqlalchemy.dialects.postgresql import UUID as PGUUID
+from app.models.base import GUID
 
 from app.models.base import Base
 
@@ -27,14 +27,14 @@ class DocSection(Base):
     
     # Foreign Keys
     language_id: Mapped[UUID] = mapped_column(
-        PGUUID(as_uuid=True),
+        GUID(),
         ForeignKey("languages.id", ondelete="CASCADE"),
         nullable=False,
         index=True
     )
     
     parent_id: Mapped[Optional[UUID]] = mapped_column(
-        PGUUID(as_uuid=True),
+        GUID(),
         ForeignKey("doc_sections.id", ondelete="CASCADE"),
         nullable=True,
         index=True

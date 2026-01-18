@@ -7,7 +7,7 @@ import enum
 
 from sqlalchemy import String, Enum as SQLEnum, DateTime, ForeignKey, Numeric
 from sqlalchemy.orm import Mapped, mapped_column, relationship
-from sqlalchemy.dialects.postgresql import UUID as PGUUID
+from app.models.base import GUID
 
 from app.models.base import Base
 
@@ -35,14 +35,14 @@ class LearningPath(Base):
     __tablename__ = "learning_paths"
     
     user_id: Mapped[UUID] = mapped_column(
-        PGUUID(as_uuid=True),
+        GUID(),
         ForeignKey("users.id", ondelete="CASCADE"),
         nullable=False,
         index=True
     )
     
     language_id: Mapped[UUID] = mapped_column(
-        PGUUID(as_uuid=True),
+        GUID(),
         ForeignKey("languages.id", ondelete="CASCADE"),
         nullable=False,
         index=True

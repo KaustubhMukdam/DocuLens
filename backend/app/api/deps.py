@@ -109,7 +109,7 @@ async def get_current_premium_user(
     return current_user
 
 
-def get_optional_current_user(
+async def get_optional_current_user(
     db: AsyncSession = Depends(get_db),
     credentials: Optional[HTTPAuthorizationCredentials] = Depends(security)
 ) -> Optional[User]:
@@ -129,6 +129,6 @@ def get_optional_current_user(
     
     try:
         token = credentials.credentials
-        return auth_service.get_current_user(db=db, token=token)
+        return await auth_service.get_current_user(db=db, token=token)
     except:
         return None

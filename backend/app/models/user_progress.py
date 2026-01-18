@@ -6,7 +6,7 @@ from datetime import datetime
 
 from sqlalchemy import Boolean, Integer, DateTime, Text, ForeignKey
 from sqlalchemy.orm import Mapped, mapped_column, relationship
-from sqlalchemy.dialects.postgresql import UUID as PGUUID
+from app.models.base import GUID
 
 from app.models.base import Base
 
@@ -17,14 +17,14 @@ class UserProgress(Base):
     __tablename__ = "user_progress"
     
     user_id: Mapped[UUID] = mapped_column(
-        PGUUID(as_uuid=True),
+        GUID(),
         ForeignKey("users.id", ondelete="CASCADE"),
         nullable=False,
         index=True
     )
     
     doc_section_id: Mapped[UUID] = mapped_column(
-        PGUUID(as_uuid=True),
+        GUID(),
         ForeignKey("doc_sections.id", ondelete="CASCADE"),
         nullable=False,
         index=True

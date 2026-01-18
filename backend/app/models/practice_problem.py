@@ -4,11 +4,10 @@ from typing import Optional
 from uuid import UUID
 import enum
 
-from sqlalchemy import String, Text, Enum as SQLEnum, ForeignKey, ARRAY
+from sqlalchemy import String, Text, Enum as SQLEnum, ForeignKey
 from sqlalchemy.orm import Mapped, mapped_column, relationship
-from sqlalchemy.dialects.postgresql import UUID as PGUUID
 
-from app.models.base import Base
+from app.models.base import Base, GUID, StringArray  # Import StringArray
 
 
 class ProblemPlatform(str, enum.Enum):
@@ -32,7 +31,7 @@ class PracticeProblem(Base):
     __tablename__ = "practice_problems"
     
     doc_section_id: Mapped[UUID] = mapped_column(
-        PGUUID(as_uuid=True),
+        GUID(),
         ForeignKey("doc_sections.id", ondelete="CASCADE"),
         nullable=False,
         index=True
@@ -42,7 +41,9 @@ class PracticeProblem(Base):
     platform: Mapped[ProblemPlatform] = mapped_column(SQLEnum(ProblemPlatform), nullable=False)
     problem_url: Mapped[str] = mapped_column(Text, nullable=False)
     difficulty: Mapped[ProblemDifficulty] = mapped_column(SQLEnum(ProblemDifficulty), nullable=False)
-    topics: Mapped[Optional[list[str]]] = mapped_column(ARRAY(String), nullable=True)
+    
+    # Changed: Use StringArray instead of ARRAY(String)
+    topics: Mapped[Optional[list[str]]] = mapped_column(StringArray(), nullable=True)
     
     doc_section: Mapped["DocSection"] = relationship(
         "DocSection",
