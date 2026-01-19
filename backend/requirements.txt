@@ -43,6 +43,9 @@ playwright==1.40.0
 requests==2.31.0
 httpx==0.26.0
 
+# HTML parsing
+html5lib==1.1
+
 # Utilities
 python-dotenv==1.0.0
 loguru==0.7.2

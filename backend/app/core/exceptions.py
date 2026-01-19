@@ -1,3 +1,6 @@
+# ============================================================================
+# app/core/exceptions.py
+# ============================================================================
 """
 Custom exception classes for the application.
 """
@@ -103,6 +106,17 @@ class ExternalServiceException(DocuLensException):
     def __init__(
         self,
         message: str = "External service error",
+        details: Optional[Any] = None
+    ):
+        super().__init__(message=message, status_code=503, details=details)
+
+
+class ServiceUnavailableException(DocuLensException):
+    """Exception raised when a service is temporarily unavailable."""
+    
+    def __init__(
+        self,
+        message: str = "Service temporarily unavailable",
         details: Optional[Any] = None
     ):
         super().__init__(message=message, status_code=503, details=details)

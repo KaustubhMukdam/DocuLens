@@ -72,6 +72,8 @@ class User(Base):
         default=True,
         nullable=False
     )
+
+    is_admin: Mapped[bool] = mapped_column(Boolean, default=False, nullable=False)
     
     is_premium: Mapped[bool] = mapped_column(
         Boolean,

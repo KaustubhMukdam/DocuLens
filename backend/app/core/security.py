@@ -9,7 +9,7 @@ from jose import JWTError, jwt
 from passlib.context import CryptContext
 
 from app.core.config import settings
-
+# from passlib.hash import argon2
 
 # Password hashing context
 pwd_context = CryptContext(

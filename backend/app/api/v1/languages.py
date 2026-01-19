@@ -13,6 +13,9 @@ from app.schemas.response import PaginatedResponse, PaginationMeta
 from app.crud import language as language_crud
 from app.core.config import settings
 
+from loguru import logger
+from app.core.exceptions import NotFoundException
+
 router = APIRouter()
 
 
@@ -44,24 +47,84 @@ async def get_languages(
 
 
 @router.get("/{slug}", response_model=LanguageDetailResponse)
-async def get_language(
+async def get_language_by_slug(
     slug: str,
     db: AsyncSession = Depends(get_db)
 ):
-    """Get language details by slug."""
-    language = await language_crud.get_by_slug(db=db, slug=slug)
+    """
+    Get detailed information about a programming language by slug.
+    
+    Returns:
+    - Language metadata
+    - Section statistics (total, quick path, deep path)
+    - Estimated learning time
+    """
+    from sqlalchemy import select, func
+    from app.models.doc_section import DocSection
+    
+    # Get language
+    language = await language_crud.get_by_slug(db, slug=slug)
     if not language:
-        raise HTTPException(
-            status_code=status.HTTP_404_NOT_FOUND,
-            detail=f"Language '{slug}' not found"
+        raise NotFoundException(message=f"Language '{slug}' not found")
+    
+    # Count sections - FIX: Use proper async query
+    total_sections_result = await db.execute(
+        select(func.count(DocSection.id)).where(DocSection.language_id == language.id)
+    )
+    total_sections = total_sections_result.scalar_one()
+    
+    # Count quick path sections
+    quick_path_result = await db.execute(
+        select(func.count(DocSection.id)).where(
+            DocSection.language_id == language.id,
+            DocSection.is_quick_path == True
         )
+    )
+    quick_path_sections = quick_path_result.scalar_one()
     
-    # TODO: Calculate statistics
-    response = LanguageDetailResponse.model_validate(language)
-    response.total_sections = 0
-    response.quick_path_sections = 0
-    response.deep_path_sections = 0
-    response.estimated_quick_time_hours = 0.0
-    response.estimated_deep_time_hours = 0.0
+    # Count deep path sections
+    deep_path_result = await db.execute(
+        select(func.count(DocSection.id)).where(
+            DocSection.language_id == language.id,
+            DocSection.is_deep_path == True
+        )
+    )
+    deep_path_sections = deep_path_result.scalar_one()
     
-    return response
+    # Calculate estimated time (quick path)
+    quick_time_result = await db.execute(
+        select(func.sum(DocSection.estimated_time_minutes)).where(
+            DocSection.language_id == language.id,
+            DocSection.is_quick_path == True
+        )
+    )
+    quick_time_minutes = quick_time_result.scalar_one() or 0
+    
+    # Calculate estimated time (deep path)
+    deep_time_result = await db.execute(
+        select(func.sum(DocSection.estimated_time_minutes)).where(
+            DocSection.language_id == language.id,
+            DocSection.is_deep_path == True
+        )
+    )
+    deep_time_minutes = deep_time_result.scalar_one() or 0
+    
+    logger.info(f"Retrieved language '{slug}': {total_sections} sections")
+    
+    return LanguageDetailResponse(
+        id=language.id,
+        name=language.name,
+        slug=language.slug,
+        official_doc_url=language.official_doc_url,
+        logo_url=language.logo_url,
+        description=language.description,
+        version=language.version,
+        is_active=language.is_active,
+        last_updated=language.last_updated,
+        created_at=language.created_at,
+        total_sections=total_sections,
+        quick_path_sections=quick_path_sections,
+        deep_path_sections=deep_path_sections,
+        estimated_quick_time_hours=round(quick_time_minutes / 60, 1),
+        estimated_deep_time_hours=round(deep_time_minutes / 60, 1)
+    )

@@ -201,3 +201,4 @@ __pycache__
 backend/tests/
 check_env.py
 run_tests.sh
+scrape_documentation_error.txt
