@@ -1,14 +1,13 @@
 # ============================================================================
-# app/api/v1/router.py (UPDATE)
+# app/api/v1/router.py
 # ============================================================================
 """API v1 router - aggregates all endpoint routers."""
 
 from fastapi import APIRouter
-
 from app.api.v1 import (
-    auth, users, languages, ai, learning_paths, 
+    auth, users, languages, docs, ai, learning_paths,
     progress, bookmarks, videos, practice, discussions,
-    admin  # NEW
+    admin
 )
 
 api_router = APIRouter()
@@ -32,6 +31,13 @@ api_router.include_router(
     languages.router,
     prefix="/languages",
     tags=["Languages"]
+)
+
+# Documentation Sections (ADD THIS)
+api_router.include_router(
+    docs.router,
+    prefix="/docs",
+    tags=["Documentation"]
 )
 
 # AI Features
@@ -83,7 +89,7 @@ api_router.include_router(
     tags=["Discussions & Comments"]
 )
 
-# Admin (NEW)
+# Admin
 api_router.include_router(
     admin.router,
     prefix="/admin",
