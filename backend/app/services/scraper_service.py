@@ -44,7 +44,7 @@ class ScraperService:
             slug=name.lower(),
             description=f"Learn {name} programming",
             official_doc_url=official_doc_url,
-            icon_url=f"https://cdn.jsdelivr.net/gh/devicons/devicon/icons/{name.lower()}/{name.lower()}-original.svg"
+            logo_url=f"https://cdn.jsdelivr.net/gh/devicons/devicon/icons/{name.lower()}/{name.lower()}-original.svg"
         )
         db.add(language)
         await db.flush()
