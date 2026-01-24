@@ -2,6 +2,8 @@ import { useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useAuthStore } from '@/store/authStore';
 import { Home, Book, BarChart, User, LogOut, Menu, X } from 'lucide-react';
+import { Moon, Sun } from 'lucide-react';
+import { useTheme } from '@/context/ThemeContext';
 
 const Navbar = () => {
   const location = useLocation();
@@ -9,6 +11,7 @@ const Navbar = () => {
   const { user, isAuthenticated, logout } = useAuthStore();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isProfileOpen, setIsProfileOpen] = useState(false);
+  const { theme, toggleTheme } = useTheme();
 
   const handleLogout = () => {
     logout();
@@ -201,6 +204,12 @@ const Navbar = () => {
           </div>
         )}
       </div>
+      <button
+        onClick={toggleTheme}
+        className="p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition"
+      >
+        {theme === 'light' ? <Moon className="w-5 h-5" /> : <Sun className="w-5 h-5" />}
+      </button>
     </nav>
   );
 };
