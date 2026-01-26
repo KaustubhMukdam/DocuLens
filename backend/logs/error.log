@@ -1297,3 +1297,821 @@ pydantic_core._pydantic_core.ValidationError: 1 validation error for DocSectionD
 parent_id
   Field required [type=missing, input_value=<unprintable dict object>, input_type=dict]
     For further information visit https://errors.pydantic.dev/2.5/v/missing
+2026-01-25 09:44:20 | ERROR    | app.main:lifespan:39 - Failed to connect to database: (sqlalchemy.dialects.postgresql.asyncpg.Error) <class 'asyncpg.exceptions.ConnectionDoesNotExistError'>: connection was closed in the middle of operation
+[SQL: select pg_catalog.version()]
+(Background on this error at: https://sqlalche.me/e/20/dbapi)
+2026-01-26 00:27:56 | ERROR    | app.main:general_exception_handler:192 - Unhandled exception on /api/v1/videos/sections/9e6bbe13-1ca1-438c-add4-1e26d8c941e7: type object 'VideoResource' has no attribute 'order_index'
+Traceback (most recent call last):
+
+  File "<string>", line 1, in <module>
+  File "C:\Users\kaust\AppData\Local\Programs\Python\Python311\Lib\multiprocessing\spawn.py", line 122, in spawn_main
+    exitcode = _main(fd, parent_sentinel)
+               │     │   └ 348
+               │     └ 3
+               └ <function _main at 0x0000022DA06C37E0>
+  File "C:\Users\kaust\AppData\Local\Programs\Python\Python311\Lib\multiprocessing\spawn.py", line 135, in _main
+    return self._bootstrap(parent_sentinel)
+           │    │          └ 348
+           │    └ <function BaseProcess._bootstrap at 0x0000022DA04A4220>
+           └ <SpawnProcess name='SpawnProcess-1' parent=31048 started>
+  File "C:\Users\kaust\AppData\Local\Programs\Python\Python311\Lib\multiprocessing\process.py", line 314, in _bootstrap
+    self.run()
+    │    └ <function BaseProcess.run at 0x0000022DA049F740>
+    └ <SpawnProcess name='SpawnProcess-1' parent=31048 started>
+  File "C:\Users\kaust\AppData\Local\Programs\Python\Python311\Lib\multiprocessing\process.py", line 108, in run
+    self._target(*self._args, **self._kwargs)
+    │    │        │    │        │    └ {'config': <uvicorn.config.Config object at 0x0000022DA068F410>, 'target': <bound method Server.run of <uvicorn.server.Server...
+    │    │        │    │        └ <SpawnProcess name='SpawnProcess-1' parent=31048 started>
+    │    │        │    └ ()
+    │    │        └ <SpawnProcess name='SpawnProcess-1' parent=31048 started>
+    │    └ <function subprocess_started at 0x0000022DA2AC9260>
+    └ <SpawnProcess name='SpawnProcess-1' parent=31048 started>
+  File "D:\Programming\portfolio_projects\DocuLens\venv\Lib\site-packages\uvicorn\_subprocess.py", line 78, in subprocess_started
+    target(sockets=sockets)
+    │              └ [<socket.socket fd=772, family=2, type=1, proto=6, laddr=('0.0.0.0', 8000)>]
+    └ <bound method Server.run of <uvicorn.server.Server object at 0x0000022DA2C4FA50>>
+  File "D:\Programming\portfolio_projects\DocuLens\venv\Lib\site-packages\uvicorn\server.py", line 62, in run
+    return asyncio.run(self.serve(sockets=sockets))
+           │       │   │    │             └ [<socket.socket fd=772, family=2, type=1, proto=6, laddr=('0.0.0.0', 8000)>]
+           │       │   │    └ <function Server.serve at 0x0000022DA2AC82C0>
+           │       │   └ <uvicorn.server.Server object at 0x0000022DA2C4FA50>
+           │       └ <function run at 0x0000022DA23AFC40>
+           └ <module 'asyncio' from 'C:\\Users\\kaust\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\asyncio\\__init__.py'>
+  File "C:\Users\kaust\AppData\Local\Programs\Python\Python311\Lib\asyncio\runners.py", line 190, in run
+    return runner.run(main)
+           │      │   └ <coroutine object Server.serve at 0x0000022DA2C58480>
+           │      └ <function Runner.run at 0x0000022DA23B0040>
+           └ <asyncio.runners.Runner object at 0x0000022DA2C4F050>
+  File "C:\Users\kaust\AppData\Local\Programs\Python\Python311\Lib\asyncio\runners.py", line 118, in run
+    return self._loop.run_until_complete(task)
+           │    │     │                  └ <Task pending name='Task-1' coro=<Server.serve() running at D:\Programming\portfolio_projects\DocuLens\venv\Lib\site-packages...
+           │    │     └ <function BaseEventLoop.run_until_complete at 0x0000022DA23ADB20>
+           │    └ <_WindowsSelectorEventLoop running=True closed=False debug=False>
+           └ <asyncio.runners.Runner object at 0x0000022DA2C4F050>
+  File "C:\Users\kaust\AppData\Local\Programs\Python\Python311\Lib\asyncio\base_events.py", line 641, in run_until_complete
+    self.run_forever()
+    │    └ <function BaseEventLoop.run_forever at 0x0000022DA23ADA80>
+    └ <_WindowsSelectorEventLoop running=True closed=False debug=False>
+  File "C:\Users\kaust\AppData\Local\Programs\Python\Python311\Lib\asyncio\base_events.py", line 608, in run_forever
+    self._run_once()
+    │    └ <function BaseEventLoop._run_once at 0x0000022DA23AF880>
+    └ <_WindowsSelectorEventLoop running=True closed=False debug=False>
+  File "C:\Users\kaust\AppData\Local\Programs\Python\Python311\Lib\asyncio\base_events.py", line 1936, in _run_once
+    handle._run()
+    │      └ <function Handle._run at 0x0000022DA22ECEA0>
+    └ <Handle Task.task_wakeup(<Future finished result=None>)>
+  File "C:\Users\kaust\AppData\Local\Programs\Python\Python311\Lib\asyncio\events.py", line 84, in _run
+    self._context.run(self._callback, *self._args)
+    │    │            │    │           │    └ <member '_args' of 'Handle' objects>
+    │    │            │    │           └ <Handle Task.task_wakeup(<Future finished result=None>)>
+    │    │            │    └ <member '_callback' of 'Handle' objects>
+    │    │            └ <Handle Task.task_wakeup(<Future finished result=None>)>
+    │    └ <member '_context' of 'Handle' objects>
+    └ <Handle Task.task_wakeup(<Future finished result=None>)>
+  File "D:\Programming\portfolio_projects\DocuLens\venv\Lib\site-packages\uvicorn\protocols\http\httptools_impl.py", line 419, in run_asgi
+    result = await app(  # type: ignore[func-returns-value]
+                   └ <uvicorn.middleware.proxy_headers.ProxyHeadersMiddleware object at 0x0000022DA7EF6290>
+  File "D:\Programming\portfolio_projects\DocuLens\venv\Lib\site-packages\uvicorn\middleware\proxy_headers.py", line 84, in __call__
+    return await self.app(scope, receive, send)
+                 │    │   │      │        └ <bound method RequestResponseCycle.send of <uvicorn.protocols.http.httptools_impl.RequestResponseCycle object at 0x0000022DA8...
+                 │    │   │      └ <bound method RequestResponseCycle.receive of <uvicorn.protocols.http.httptools_impl.RequestResponseCycle object at 0x0000022...
+                 │    │   └ {'type': 'http', 'asgi': {'version': '3.0', 'spec_version': '2.3'}, 'http_version': '1.1', 'server': ('127.0.0.1', 8000), 'cl...
+                 │    └ <fastapi.applications.FastAPI object at 0x0000022DA5BB6310>
+                 └ <uvicorn.middleware.proxy_headers.ProxyHeadersMiddleware object at 0x0000022DA7EF6290>
+  File "D:\Programming\portfolio_projects\DocuLens\venv\Lib\site-packages\fastapi\applications.py", line 1054, in __call__
+    await super().__call__(scope, receive, send)
+                           │      │        └ <bound method RequestResponseCycle.send of <uvicorn.protocols.http.httptools_impl.RequestResponseCycle object at 0x0000022DA8...
+                           │      └ <bound method RequestResponseCycle.receive of <uvicorn.protocols.http.httptools_impl.RequestResponseCycle object at 0x0000022...
+                           └ {'type': 'http', 'asgi': {'version': '3.0', 'spec_version': '2.3'}, 'http_version': '1.1', 'server': ('127.0.0.1', 8000), 'cl...
+  File "D:\Programming\portfolio_projects\DocuLens\venv\Lib\site-packages\starlette\applications.py", line 123, in __call__
+    await self.middleware_stack(scope, receive, send)
+          │    │                │      │        └ <bound method RequestResponseCycle.send of <uvicorn.protocols.http.httptools_impl.RequestResponseCycle object at 0x0000022DA8...
+          │    │                │      └ <bound method RequestResponseCycle.receive of <uvicorn.protocols.http.httptools_impl.RequestResponseCycle object at 0x0000022...
+          │    │                └ {'type': 'http', 'asgi': {'version': '3.0', 'spec_version': '2.3'}, 'http_version': '1.1', 'server': ('127.0.0.1', 8000), 'cl...
+          │    └ <starlette.middleware.errors.ServerErrorMiddleware object at 0x0000022DA8060950>
+          └ <fastapi.applications.FastAPI object at 0x0000022DA5BB6310>
+> File "D:\Programming\portfolio_projects\DocuLens\venv\Lib\site-packages\starlette\middleware\errors.py", line 164, in __call__
+    await self.app(scope, receive, _send)
+          │    │   │      │        └ <function ServerErrorMiddleware.__call__.<locals>._send at 0x0000022DA87C3060>
+          │    │   │      └ <bound method RequestResponseCycle.receive of <uvicorn.protocols.http.httptools_impl.RequestResponseCycle object at 0x0000022...
+          │    │   └ {'type': 'http', 'asgi': {'version': '3.0', 'spec_version': '2.3'}, 'http_version': '1.1', 'server': ('127.0.0.1', 8000), 'cl...
+          │    └ <starlette.middleware.gzip.GZipMiddleware object at 0x0000022DA81369D0>
+          └ <starlette.middleware.errors.ServerErrorMiddleware object at 0x0000022DA8060950>
+  File "D:\Programming\portfolio_projects\DocuLens\venv\Lib\site-packages\starlette\middleware\gzip.py", line 24, in __call__
+    await responder(scope, receive, send)
+          │         │      │        └ <function ServerErrorMiddleware.__call__.<locals>._send at 0x0000022DA87C3060>
+          │         │      └ <bound method RequestResponseCycle.receive of <uvicorn.protocols.http.httptools_impl.RequestResponseCycle object at 0x0000022...
+          │         └ {'type': 'http', 'asgi': {'version': '3.0', 'spec_version': '2.3'}, 'http_version': '1.1', 'server': ('127.0.0.1', 8000), 'cl...
+          └ <starlette.middleware.gzip.GZipResponder object at 0x0000022DA87DDBD0>
+  File "D:\Programming\portfolio_projects\DocuLens\venv\Lib\site-packages\starlette\middleware\gzip.py", line 44, in __call__
+    await self.app(scope, receive, self.send_with_gzip)
+          │    │   │      │        │    └ <function GZipResponder.send_with_gzip at 0x0000022DA4D82660>
+          │    │   │      │        └ <starlette.middleware.gzip.GZipResponder object at 0x0000022DA87DDBD0>
+          │    │   │      └ <bound method RequestResponseCycle.receive of <uvicorn.protocols.http.httptools_impl.RequestResponseCycle object at 0x0000022...
+          │    │   └ {'type': 'http', 'asgi': {'version': '3.0', 'spec_version': '2.3'}, 'http_version': '1.1', 'server': ('127.0.0.1', 8000), 'cl...
+          │    └ <starlette.middleware.cors.CORSMiddleware object at 0x0000022DA7FFF090>
+          └ <starlette.middleware.gzip.GZipResponder object at 0x0000022DA87DDBD0>
+  File "D:\Programming\portfolio_projects\DocuLens\venv\Lib\site-packages\starlette\middleware\cors.py", line 91, in __call__
+    await self.simple_response(scope, receive, send, request_headers=headers)
+          │    │               │      │        │                     └ Headers({'host': 'localhost:8000', 'connection': 'keep-alive', 'sec-ch-ua-platform': '"Windows"', 'authorization': 'Bearer ey...
+          │    │               │      │        └ <bound method GZipResponder.send_with_gzip of <starlette.middleware.gzip.GZipResponder object at 0x0000022DA87DDBD0>>
+          │    │               │      └ <bound method RequestResponseCycle.receive of <uvicorn.protocols.http.httptools_impl.RequestResponseCycle object at 0x0000022...
+          │    │               └ {'type': 'http', 'asgi': {'version': '3.0', 'spec_version': '2.3'}, 'http_version': '1.1', 'server': ('127.0.0.1', 8000), 'cl...
+          │    └ <function CORSMiddleware.simple_response at 0x0000022DA4D80AE0>
+          └ <starlette.middleware.cors.CORSMiddleware object at 0x0000022DA7FFF090>
+  File "D:\Programming\portfolio_projects\DocuLens\venv\Lib\site-packages\starlette\middleware\cors.py", line 146, in simple_response
+    await self.app(scope, receive, send)
+          │    │   │      │        └ functools.partial(<bound method CORSMiddleware.send of <starlette.middleware.cors.CORSMiddleware object at 0x0000022DA7FFF090...
+          │    │   │      └ <bound method RequestResponseCycle.receive of <uvicorn.protocols.http.httptools_impl.RequestResponseCycle object at 0x0000022...
+          │    │   └ {'type': 'http', 'asgi': {'version': '3.0', 'spec_version': '2.3'}, 'http_version': '1.1', 'server': ('127.0.0.1', 8000), 'cl...
+          │    └ <starlette.middleware.exceptions.ExceptionMiddleware object at 0x0000022DA7FB3950>
+          └ <starlette.middleware.cors.CORSMiddleware object at 0x0000022DA7FFF090>
+  File "D:\Programming\portfolio_projects\DocuLens\venv\Lib\site-packages\starlette\middleware\exceptions.py", line 62, in __call__
+    await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+          │                            │    │    │     │      │        └ functools.partial(<bound method CORSMiddleware.send of <starlette.middleware.cors.CORSMiddleware object at 0x0000022DA7FFF090...
+          │                            │    │    │     │      └ <bound method RequestResponseCycle.receive of <uvicorn.protocols.http.httptools_impl.RequestResponseCycle object at 0x0000022...
+          │                            │    │    │     └ {'type': 'http', 'asgi': {'version': '3.0', 'spec_version': '2.3'}, 'http_version': '1.1', 'server': ('127.0.0.1', 8000), 'cl...
+          │                            │    │    └ <starlette.requests.Request object at 0x0000022DA87DD590>
+          │                            │    └ <fastapi.routing.APIRouter object at 0x0000022DA5C006D0>
+          │                            └ <starlette.middleware.exceptions.ExceptionMiddleware object at 0x0000022DA7FB3950>
+          └ <function wrap_app_handling_exceptions at 0x0000022DA4CB76A0>
+  File "D:\Programming\portfolio_projects\DocuLens\venv\Lib\site-packages\starlette\_exception_handler.py", line 64, in wrapped_app
+    raise exc
+  File "D:\Programming\portfolio_projects\DocuLens\venv\Lib\site-packages\starlette\_exception_handler.py", line 53, in wrapped_app
+    await app(scope, receive, sender)
+          │   │      │        └ <function wrap_app_handling_exceptions.<locals>.wrapped_app.<locals>.sender at 0x0000022DA87C2980>
+          │   │      └ <bound method RequestResponseCycle.receive of <uvicorn.protocols.http.httptools_impl.RequestResponseCycle object at 0x0000022...
+          │   └ {'type': 'http', 'asgi': {'version': '3.0', 'spec_version': '2.3'}, 'http_version': '1.1', 'server': ('127.0.0.1', 8000), 'cl...
+          └ <fastapi.routing.APIRouter object at 0x0000022DA5C006D0>
+  File "D:\Programming\portfolio_projects\DocuLens\venv\Lib\site-packages\starlette\routing.py", line 762, in __call__
+    await self.middleware_stack(scope, receive, send)
+          │    │                │      │        └ <function wrap_app_handling_exceptions.<locals>.wrapped_app.<locals>.sender at 0x0000022DA87C2980>
+          │    │                │      └ <bound method RequestResponseCycle.receive of <uvicorn.protocols.http.httptools_impl.RequestResponseCycle object at 0x0000022...
+          │    │                └ {'type': 'http', 'asgi': {'version': '3.0', 'spec_version': '2.3'}, 'http_version': '1.1', 'server': ('127.0.0.1', 8000), 'cl...
+          │    └ <bound method Router.app of <fastapi.routing.APIRouter object at 0x0000022DA5C006D0>>
+          └ <fastapi.routing.APIRouter object at 0x0000022DA5C006D0>
+  File "D:\Programming\portfolio_projects\DocuLens\venv\Lib\site-packages\starlette\routing.py", line 782, in app
+    await route.handle(scope, receive, send)
+          │     │      │      │        └ <function wrap_app_handling_exceptions.<locals>.wrapped_app.<locals>.sender at 0x0000022DA87C2980>
+          │     │      │      └ <bound method RequestResponseCycle.receive of <uvicorn.protocols.http.httptools_impl.RequestResponseCycle object at 0x0000022...
+          │     │      └ {'type': 'http', 'asgi': {'version': '3.0', 'spec_version': '2.3'}, 'http_version': '1.1', 'server': ('127.0.0.1', 8000), 'cl...
+          │     └ <function Route.handle at 0x0000022DA4CE4EA0>
+          └ APIRoute(path='/api/v1/videos/sections/{section_id}', name='get_section_videos', methods=['GET'])
+  File "D:\Programming\portfolio_projects\DocuLens\venv\Lib\site-packages\starlette\routing.py", line 297, in handle
+    await self.app(scope, receive, send)
+          │    │   │      │        └ <function wrap_app_handling_exceptions.<locals>.wrapped_app.<locals>.sender at 0x0000022DA87C2980>
+          │    │   │      └ <bound method RequestResponseCycle.receive of <uvicorn.protocols.http.httptools_impl.RequestResponseCycle object at 0x0000022...
+          │    │   └ {'type': 'http', 'asgi': {'version': '3.0', 'spec_version': '2.3'}, 'http_version': '1.1', 'server': ('127.0.0.1', 8000), 'cl...
+          │    └ <function request_response.<locals>.app at 0x0000022DA8215EE0>
+          └ APIRoute(path='/api/v1/videos/sections/{section_id}', name='get_section_videos', methods=['GET'])
+  File "D:\Programming\portfolio_projects\DocuLens\venv\Lib\site-packages\starlette\routing.py", line 77, in app
+    await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+          │                            │    │        │      │        └ <function wrap_app_handling_exceptions.<locals>.wrapped_app.<locals>.sender at 0x0000022DA87C2980>
+          │                            │    │        │      └ <bound method RequestResponseCycle.receive of <uvicorn.protocols.http.httptools_impl.RequestResponseCycle object at 0x0000022...
+          │                            │    │        └ {'type': 'http', 'asgi': {'version': '3.0', 'spec_version': '2.3'}, 'http_version': '1.1', 'server': ('127.0.0.1', 8000), 'cl...
+          │                            │    └ <starlette.requests.Request object at 0x0000022DA87DE190>
+          │                            └ <function request_response.<locals>.app.<locals>.app at 0x0000022DA87C2A20>
+          └ <function wrap_app_handling_exceptions at 0x0000022DA4CB76A0>
+  File "D:\Programming\portfolio_projects\DocuLens\venv\Lib\site-packages\starlette\_exception_handler.py", line 64, in wrapped_app
+    raise exc
+  File "D:\Programming\portfolio_projects\DocuLens\venv\Lib\site-packages\starlette\_exception_handler.py", line 53, in wrapped_app
+    await app(scope, receive, sender)
+          │   │      │        └ <function wrap_app_handling_exceptions.<locals>.wrapped_app.<locals>.sender at 0x0000022DA87C27A0>
+          │   │      └ <bound method RequestResponseCycle.receive of <uvicorn.protocols.http.httptools_impl.RequestResponseCycle object at 0x0000022...
+          │   └ {'type': 'http', 'asgi': {'version': '3.0', 'spec_version': '2.3'}, 'http_version': '1.1', 'server': ('127.0.0.1', 8000), 'cl...
+          └ <function request_response.<locals>.app.<locals>.app at 0x0000022DA87C2A20>
+  File "D:\Programming\portfolio_projects\DocuLens\venv\Lib\site-packages\starlette\routing.py", line 72, in app
+    response = await func(request)
+                     │    └ <starlette.requests.Request object at 0x0000022DA87DE190>
+                     └ <function get_request_handler.<locals>.app at 0x0000022DA8216160>
+  File "D:\Programming\portfolio_projects\DocuLens\venv\Lib\site-packages\fastapi\routing.py", line 299, in app
+    raise e
+  File "D:\Programming\portfolio_projects\DocuLens\venv\Lib\site-packages\fastapi\routing.py", line 294, in app
+    raw_response = await run_endpoint_function(
+                         └ <function run_endpoint_function at 0x0000022DA4CB6DE0>
+  File "D:\Programming\portfolio_projects\DocuLens\venv\Lib\site-packages\fastapi\routing.py", line 191, in run_endpoint_function
+    return await dependant.call(**values)
+                 │         │      └ {'db': <sqlalchemy.ext.asyncio.session.AsyncSession object at 0x0000022DA87DCAD0>, 'section_id': UUID('9e6bbe13-1ca1-438c-add...
+                 │         └ <function get_section_videos at 0x0000022DA7F23B00>
+                 └ <fastapi.dependencies.models.Dependant object at 0x0000022DA825CD90>
+
+  File "D:\Programming\portfolio_projects\DocuLens\backend\app\api\v1\videos.py", line 88, in get_section_videos
+    .order_by(VideoResource.order_index)
+              └ <class 'app.models.video_resource.VideoResource'>
+
+AttributeError: type object 'VideoResource' has no attribute 'order_index'
+2026-01-26 00:28:00 | ERROR    | app.main:general_exception_handler:192 - Unhandled exception on /api/v1/practice/sections/9e6bbe13-1ca1-438c-add4-1e26d8c941e7: type object 'PracticeProblem' has no attribute 'order_index'
+Traceback (most recent call last):
+
+  File "<string>", line 1, in <module>
+  File "C:\Users\kaust\AppData\Local\Programs\Python\Python311\Lib\multiprocessing\spawn.py", line 122, in spawn_main
+    exitcode = _main(fd, parent_sentinel)
+               │     │   └ 348
+               │     └ 3
+               └ <function _main at 0x0000022DA06C37E0>
+  File "C:\Users\kaust\AppData\Local\Programs\Python\Python311\Lib\multiprocessing\spawn.py", line 135, in _main
+    return self._bootstrap(parent_sentinel)
+           │    │          └ 348
+           │    └ <function BaseProcess._bootstrap at 0x0000022DA04A4220>
+           └ <SpawnProcess name='SpawnProcess-1' parent=31048 started>
+  File "C:\Users\kaust\AppData\Local\Programs\Python\Python311\Lib\multiprocessing\process.py", line 314, in _bootstrap
+    self.run()
+    │    └ <function BaseProcess.run at 0x0000022DA049F740>
+    └ <SpawnProcess name='SpawnProcess-1' parent=31048 started>
+  File "C:\Users\kaust\AppData\Local\Programs\Python\Python311\Lib\multiprocessing\process.py", line 108, in run
+    self._target(*self._args, **self._kwargs)
+    │    │        │    │        │    └ {'config': <uvicorn.config.Config object at 0x0000022DA068F410>, 'target': <bound method Server.run of <uvicorn.server.Server...
+    │    │        │    │        └ <SpawnProcess name='SpawnProcess-1' parent=31048 started>
+    │    │        │    └ ()
+    │    │        └ <SpawnProcess name='SpawnProcess-1' parent=31048 started>
+    │    └ <function subprocess_started at 0x0000022DA2AC9260>
+    └ <SpawnProcess name='SpawnProcess-1' parent=31048 started>
+  File "D:\Programming\portfolio_projects\DocuLens\venv\Lib\site-packages\uvicorn\_subprocess.py", line 78, in subprocess_started
+    target(sockets=sockets)
+    │              └ [<socket.socket fd=772, family=2, type=1, proto=6, laddr=('0.0.0.0', 8000)>]
+    └ <bound method Server.run of <uvicorn.server.Server object at 0x0000022DA2C4FA50>>
+  File "D:\Programming\portfolio_projects\DocuLens\venv\Lib\site-packages\uvicorn\server.py", line 62, in run
+    return asyncio.run(self.serve(sockets=sockets))
+           │       │   │    │             └ [<socket.socket fd=772, family=2, type=1, proto=6, laddr=('0.0.0.0', 8000)>]
+           │       │   │    └ <function Server.serve at 0x0000022DA2AC82C0>
+           │       │   └ <uvicorn.server.Server object at 0x0000022DA2C4FA50>
+           │       └ <function run at 0x0000022DA23AFC40>
+           └ <module 'asyncio' from 'C:\\Users\\kaust\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\asyncio\\__init__.py'>
+  File "C:\Users\kaust\AppData\Local\Programs\Python\Python311\Lib\asyncio\runners.py", line 190, in run
+    return runner.run(main)
+           │      │   └ <coroutine object Server.serve at 0x0000022DA2C58480>
+           │      └ <function Runner.run at 0x0000022DA23B0040>
+           └ <asyncio.runners.Runner object at 0x0000022DA2C4F050>
+  File "C:\Users\kaust\AppData\Local\Programs\Python\Python311\Lib\asyncio\runners.py", line 118, in run
+    return self._loop.run_until_complete(task)
+           │    │     │                  └ <Task pending name='Task-1' coro=<Server.serve() running at D:\Programming\portfolio_projects\DocuLens\venv\Lib\site-packages...
+           │    │     └ <function BaseEventLoop.run_until_complete at 0x0000022DA23ADB20>
+           │    └ <_WindowsSelectorEventLoop running=True closed=False debug=False>
+           └ <asyncio.runners.Runner object at 0x0000022DA2C4F050>
+  File "C:\Users\kaust\AppData\Local\Programs\Python\Python311\Lib\asyncio\base_events.py", line 641, in run_until_complete
+    self.run_forever()
+    │    └ <function BaseEventLoop.run_forever at 0x0000022DA23ADA80>
+    └ <_WindowsSelectorEventLoop running=True closed=False debug=False>
+  File "C:\Users\kaust\AppData\Local\Programs\Python\Python311\Lib\asyncio\base_events.py", line 608, in run_forever
+    self._run_once()
+    │    └ <function BaseEventLoop._run_once at 0x0000022DA23AF880>
+    └ <_WindowsSelectorEventLoop running=True closed=False debug=False>
+  File "C:\Users\kaust\AppData\Local\Programs\Python\Python311\Lib\asyncio\base_events.py", line 1936, in _run_once
+    handle._run()
+    │      └ <function Handle._run at 0x0000022DA22ECEA0>
+    └ <Handle Task.task_wakeup(<Future finished result=None>)>
+  File "C:\Users\kaust\AppData\Local\Programs\Python\Python311\Lib\asyncio\events.py", line 84, in _run
+    self._context.run(self._callback, *self._args)
+    │    │            │    │           │    └ <member '_args' of 'Handle' objects>
+    │    │            │    │           └ <Handle Task.task_wakeup(<Future finished result=None>)>
+    │    │            │    └ <member '_callback' of 'Handle' objects>
+    │    │            └ <Handle Task.task_wakeup(<Future finished result=None>)>
+    │    └ <member '_context' of 'Handle' objects>
+    └ <Handle Task.task_wakeup(<Future finished result=None>)>
+  File "D:\Programming\portfolio_projects\DocuLens\venv\Lib\site-packages\uvicorn\protocols\http\httptools_impl.py", line 419, in run_asgi
+    result = await app(  # type: ignore[func-returns-value]
+                   └ <uvicorn.middleware.proxy_headers.ProxyHeadersMiddleware object at 0x0000022DA7EF6290>
+  File "D:\Programming\portfolio_projects\DocuLens\venv\Lib\site-packages\uvicorn\middleware\proxy_headers.py", line 84, in __call__
+    return await self.app(scope, receive, send)
+                 │    │   │      │        └ <bound method RequestResponseCycle.send of <uvicorn.protocols.http.httptools_impl.RequestResponseCycle object at 0x0000022DA8...
+                 │    │   │      └ <bound method RequestResponseCycle.receive of <uvicorn.protocols.http.httptools_impl.RequestResponseCycle object at 0x0000022...
+                 │    │   └ {'type': 'http', 'asgi': {'version': '3.0', 'spec_version': '2.3'}, 'http_version': '1.1', 'server': ('127.0.0.1', 8000), 'cl...
+                 │    └ <fastapi.applications.FastAPI object at 0x0000022DA5BB6310>
+                 └ <uvicorn.middleware.proxy_headers.ProxyHeadersMiddleware object at 0x0000022DA7EF6290>
+  File "D:\Programming\portfolio_projects\DocuLens\venv\Lib\site-packages\fastapi\applications.py", line 1054, in __call__
+    await super().__call__(scope, receive, send)
+                           │      │        └ <bound method RequestResponseCycle.send of <uvicorn.protocols.http.httptools_impl.RequestResponseCycle object at 0x0000022DA8...
+                           │      └ <bound method RequestResponseCycle.receive of <uvicorn.protocols.http.httptools_impl.RequestResponseCycle object at 0x0000022...
+                           └ {'type': 'http', 'asgi': {'version': '3.0', 'spec_version': '2.3'}, 'http_version': '1.1', 'server': ('127.0.0.1', 8000), 'cl...
+  File "D:\Programming\portfolio_projects\DocuLens\venv\Lib\site-packages\starlette\applications.py", line 123, in __call__
+    await self.middleware_stack(scope, receive, send)
+          │    │                │      │        └ <bound method RequestResponseCycle.send of <uvicorn.protocols.http.httptools_impl.RequestResponseCycle object at 0x0000022DA8...
+          │    │                │      └ <bound method RequestResponseCycle.receive of <uvicorn.protocols.http.httptools_impl.RequestResponseCycle object at 0x0000022...
+          │    │                └ {'type': 'http', 'asgi': {'version': '3.0', 'spec_version': '2.3'}, 'http_version': '1.1', 'server': ('127.0.0.1', 8000), 'cl...
+          │    └ <starlette.middleware.errors.ServerErrorMiddleware object at 0x0000022DA8060950>
+          └ <fastapi.applications.FastAPI object at 0x0000022DA5BB6310>
+> File "D:\Programming\portfolio_projects\DocuLens\venv\Lib\site-packages\starlette\middleware\errors.py", line 164, in __call__
+    await self.app(scope, receive, _send)
+          │    │   │      │        └ <function ServerErrorMiddleware.__call__.<locals>._send at 0x0000022DA8002840>
+          │    │   │      └ <bound method RequestResponseCycle.receive of <uvicorn.protocols.http.httptools_impl.RequestResponseCycle object at 0x0000022...
+          │    │   └ {'type': 'http', 'asgi': {'version': '3.0', 'spec_version': '2.3'}, 'http_version': '1.1', 'server': ('127.0.0.1', 8000), 'cl...
+          │    └ <starlette.middleware.gzip.GZipMiddleware object at 0x0000022DA81369D0>
+          └ <starlette.middleware.errors.ServerErrorMiddleware object at 0x0000022DA8060950>
+  File "D:\Programming\portfolio_projects\DocuLens\venv\Lib\site-packages\starlette\middleware\gzip.py", line 24, in __call__
+    await responder(scope, receive, send)
+          │         │      │        └ <function ServerErrorMiddleware.__call__.<locals>._send at 0x0000022DA8002840>
+          │         │      └ <bound method RequestResponseCycle.receive of <uvicorn.protocols.http.httptools_impl.RequestResponseCycle object at 0x0000022...
+          │         └ {'type': 'http', 'asgi': {'version': '3.0', 'spec_version': '2.3'}, 'http_version': '1.1', 'server': ('127.0.0.1', 8000), 'cl...
+          └ <starlette.middleware.gzip.GZipResponder object at 0x0000022DA809BB10>
+  File "D:\Programming\portfolio_projects\DocuLens\venv\Lib\site-packages\starlette\middleware\gzip.py", line 44, in __call__
+    await self.app(scope, receive, self.send_with_gzip)
+          │    │   │      │        │    └ <function GZipResponder.send_with_gzip at 0x0000022DA4D82660>
+          │    │   │      │        └ <starlette.middleware.gzip.GZipResponder object at 0x0000022DA809BB10>
+          │    │   │      └ <bound method RequestResponseCycle.receive of <uvicorn.protocols.http.httptools_impl.RequestResponseCycle object at 0x0000022...
+          │    │   └ {'type': 'http', 'asgi': {'version': '3.0', 'spec_version': '2.3'}, 'http_version': '1.1', 'server': ('127.0.0.1', 8000), 'cl...
+          │    └ <starlette.middleware.cors.CORSMiddleware object at 0x0000022DA7FFF090>
+          └ <starlette.middleware.gzip.GZipResponder object at 0x0000022DA809BB10>
+  File "D:\Programming\portfolio_projects\DocuLens\venv\Lib\site-packages\starlette\middleware\cors.py", line 91, in __call__
+    await self.simple_response(scope, receive, send, request_headers=headers)
+          │    │               │      │        │                     └ Headers({'host': 'localhost:8000', 'connection': 'keep-alive', 'sec-ch-ua-platform': '"Windows"', 'authorization': 'Bearer ey...
+          │    │               │      │        └ <bound method GZipResponder.send_with_gzip of <starlette.middleware.gzip.GZipResponder object at 0x0000022DA809BB10>>
+          │    │               │      └ <bound method RequestResponseCycle.receive of <uvicorn.protocols.http.httptools_impl.RequestResponseCycle object at 0x0000022...
+          │    │               └ {'type': 'http', 'asgi': {'version': '3.0', 'spec_version': '2.3'}, 'http_version': '1.1', 'server': ('127.0.0.1', 8000), 'cl...
+          │    └ <function CORSMiddleware.simple_response at 0x0000022DA4D80AE0>
+          └ <starlette.middleware.cors.CORSMiddleware object at 0x0000022DA7FFF090>
+  File "D:\Programming\portfolio_projects\DocuLens\venv\Lib\site-packages\starlette\middleware\cors.py", line 146, in simple_response
+    await self.app(scope, receive, send)
+          │    │   │      │        └ functools.partial(<bound method CORSMiddleware.send of <starlette.middleware.cors.CORSMiddleware object at 0x0000022DA7FFF090...
+          │    │   │      └ <bound method RequestResponseCycle.receive of <uvicorn.protocols.http.httptools_impl.RequestResponseCycle object at 0x0000022...
+          │    │   └ {'type': 'http', 'asgi': {'version': '3.0', 'spec_version': '2.3'}, 'http_version': '1.1', 'server': ('127.0.0.1', 8000), 'cl...
+          │    └ <starlette.middleware.exceptions.ExceptionMiddleware object at 0x0000022DA7FB3950>
+          └ <starlette.middleware.cors.CORSMiddleware object at 0x0000022DA7FFF090>
+  File "D:\Programming\portfolio_projects\DocuLens\venv\Lib\site-packages\starlette\middleware\exceptions.py", line 62, in __call__
+    await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+          │                            │    │    │     │      │        └ functools.partial(<bound method CORSMiddleware.send of <starlette.middleware.cors.CORSMiddleware object at 0x0000022DA7FFF090...
+          │                            │    │    │     │      └ <bound method RequestResponseCycle.receive of <uvicorn.protocols.http.httptools_impl.RequestResponseCycle object at 0x0000022...
+          │                            │    │    │     └ {'type': 'http', 'asgi': {'version': '3.0', 'spec_version': '2.3'}, 'http_version': '1.1', 'server': ('127.0.0.1', 8000), 'cl...
+          │                            │    │    └ <starlette.requests.Request object at 0x0000022DA883FCD0>
+          │                            │    └ <fastapi.routing.APIRouter object at 0x0000022DA5C006D0>
+          │                            └ <starlette.middleware.exceptions.ExceptionMiddleware object at 0x0000022DA7FB3950>
+          └ <function wrap_app_handling_exceptions at 0x0000022DA4CB76A0>
+  File "D:\Programming\portfolio_projects\DocuLens\venv\Lib\site-packages\starlette\_exception_handler.py", line 64, in wrapped_app
+    raise exc
+  File "D:\Programming\portfolio_projects\DocuLens\venv\Lib\site-packages\starlette\_exception_handler.py", line 53, in wrapped_app
+    await app(scope, receive, sender)
+          │   │      │        └ <function wrap_app_handling_exceptions.<locals>.wrapped_app.<locals>.sender at 0x0000022DA88504A0>
+          │   │      └ <bound method RequestResponseCycle.receive of <uvicorn.protocols.http.httptools_impl.RequestResponseCycle object at 0x0000022...
+          │   └ {'type': 'http', 'asgi': {'version': '3.0', 'spec_version': '2.3'}, 'http_version': '1.1', 'server': ('127.0.0.1', 8000), 'cl...
+          └ <fastapi.routing.APIRouter object at 0x0000022DA5C006D0>
+  File "D:\Programming\portfolio_projects\DocuLens\venv\Lib\site-packages\starlette\routing.py", line 762, in __call__
+    await self.middleware_stack(scope, receive, send)
+          │    │                │      │        └ <function wrap_app_handling_exceptions.<locals>.wrapped_app.<locals>.sender at 0x0000022DA88504A0>
+          │    │                │      └ <bound method RequestResponseCycle.receive of <uvicorn.protocols.http.httptools_impl.RequestResponseCycle object at 0x0000022...
+          │    │                └ {'type': 'http', 'asgi': {'version': '3.0', 'spec_version': '2.3'}, 'http_version': '1.1', 'server': ('127.0.0.1', 8000), 'cl...
+          │    └ <bound method Router.app of <fastapi.routing.APIRouter object at 0x0000022DA5C006D0>>
+          └ <fastapi.routing.APIRouter object at 0x0000022DA5C006D0>
+  File "D:\Programming\portfolio_projects\DocuLens\venv\Lib\site-packages\starlette\routing.py", line 782, in app
+    await route.handle(scope, receive, send)
+          │     │      │      │        └ <function wrap_app_handling_exceptions.<locals>.wrapped_app.<locals>.sender at 0x0000022DA88504A0>
+          │     │      │      └ <bound method RequestResponseCycle.receive of <uvicorn.protocols.http.httptools_impl.RequestResponseCycle object at 0x0000022...
+          │     │      └ {'type': 'http', 'asgi': {'version': '3.0', 'spec_version': '2.3'}, 'http_version': '1.1', 'server': ('127.0.0.1', 8000), 'cl...
+          │     └ <function Route.handle at 0x0000022DA4CE4EA0>
+          └ APIRoute(path='/api/v1/practice/sections/{section_id}', name='get_section_problems', methods=['GET'])
+  File "D:\Programming\portfolio_projects\DocuLens\venv\Lib\site-packages\starlette\routing.py", line 297, in handle
+    await self.app(scope, receive, send)
+          │    │   │      │        └ <function wrap_app_handling_exceptions.<locals>.wrapped_app.<locals>.sender at 0x0000022DA88504A0>
+          │    │   │      └ <bound method RequestResponseCycle.receive of <uvicorn.protocols.http.httptools_impl.RequestResponseCycle object at 0x0000022...
+          │    │   └ {'type': 'http', 'asgi': {'version': '3.0', 'spec_version': '2.3'}, 'http_version': '1.1', 'server': ('127.0.0.1', 8000), 'cl...
+          │    └ <function request_response.<locals>.app at 0x0000022DA8215440>
+          └ APIRoute(path='/api/v1/practice/sections/{section_id}', name='get_section_problems', methods=['GET'])
+  File "D:\Programming\portfolio_projects\DocuLens\venv\Lib\site-packages\starlette\routing.py", line 77, in app
+    await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+          │                            │    │        │      │        └ <function wrap_app_handling_exceptions.<locals>.wrapped_app.<locals>.sender at 0x0000022DA88504A0>
+          │                            │    │        │      └ <bound method RequestResponseCycle.receive of <uvicorn.protocols.http.httptools_impl.RequestResponseCycle object at 0x0000022...
+          │                            │    │        └ {'type': 'http', 'asgi': {'version': '3.0', 'spec_version': '2.3'}, 'http_version': '1.1', 'server': ('127.0.0.1', 8000), 'cl...
+          │                            │    └ <starlette.requests.Request object at 0x0000022DA883C750>
+          │                            └ <function request_response.<locals>.app.<locals>.app at 0x0000022DA8850540>
+          └ <function wrap_app_handling_exceptions at 0x0000022DA4CB76A0>
+  File "D:\Programming\portfolio_projects\DocuLens\venv\Lib\site-packages\starlette\_exception_handler.py", line 64, in wrapped_app
+    raise exc
+  File "D:\Programming\portfolio_projects\DocuLens\venv\Lib\site-packages\starlette\_exception_handler.py", line 53, in wrapped_app
+    await app(scope, receive, sender)
+          │   │      │        └ <function wrap_app_handling_exceptions.<locals>.wrapped_app.<locals>.sender at 0x0000022DA8850680>
+          │   │      └ <bound method RequestResponseCycle.receive of <uvicorn.protocols.http.httptools_impl.RequestResponseCycle object at 0x0000022...
+          │   └ {'type': 'http', 'asgi': {'version': '3.0', 'spec_version': '2.3'}, 'http_version': '1.1', 'server': ('127.0.0.1', 8000), 'cl...
+          └ <function request_response.<locals>.app.<locals>.app at 0x0000022DA8850540>
+  File "D:\Programming\portfolio_projects\DocuLens\venv\Lib\site-packages\starlette\routing.py", line 72, in app
+    response = await func(request)
+                     │    └ <starlette.requests.Request object at 0x0000022DA883C750>
+                     └ <function get_request_handler.<locals>.app at 0x0000022DA82160C0>
+  File "D:\Programming\portfolio_projects\DocuLens\venv\Lib\site-packages\fastapi\routing.py", line 299, in app
+    raise e
+  File "D:\Programming\portfolio_projects\DocuLens\venv\Lib\site-packages\fastapi\routing.py", line 294, in app
+    raw_response = await run_endpoint_function(
+                         └ <function run_endpoint_function at 0x0000022DA4CB6DE0>
+  File "D:\Programming\portfolio_projects\DocuLens\venv\Lib\site-packages\fastapi\routing.py", line 191, in run_endpoint_function
+    return await dependant.call(**values)
+                 │         │      └ <unprintable dict object>
+                 │         └ <function get_section_problems at 0x0000022DA7F23240>
+                 └ <fastapi.dependencies.models.Dependant object at 0x0000022DA8261BD0>
+
+  File "D:\Programming\portfolio_projects\DocuLens\backend\app\api\v1\practice.py", line 82, in get_section_problems
+    problems = await practice_problem_crud.get_by_section(
+                     │                     └ <function CRUDPracticeProblem.get_by_section at 0x0000022DA7F3C040>
+                     └ <app.crud.practice_problem.CRUDPracticeProblem object at 0x0000022DA7F2E250>
+
+  File "D:\Programming\portfolio_projects\DocuLens\backend\app\crud\practice_problem.py", line 57, in get_by_section
+    query = query.order_by(PracticeProblem.order_index)
+            │     │        └ <class 'app.models.practice_problem.PracticeProblem'>
+            │     └ <function GenerativeSelect.order_by at 0x0000022DA54B2520>
+            └ <sqlalchemy.sql.selectable.Select object at 0x0000022DA87DB4D0>
+
+AttributeError: type object 'PracticeProblem' has no attribute 'order_index'
+2026-01-26 00:28:02 | ERROR    | app.main:general_exception_handler:192 - Unhandled exception on /api/v1/videos/sections/9e6bbe13-1ca1-438c-add4-1e26d8c941e7: type object 'VideoResource' has no attribute 'order_index'
+Traceback (most recent call last):
+
+  File "<string>", line 1, in <module>
+  File "C:\Users\kaust\AppData\Local\Programs\Python\Python311\Lib\multiprocessing\spawn.py", line 122, in spawn_main
+    exitcode = _main(fd, parent_sentinel)
+               │     │   └ 348
+               │     └ 3
+               └ <function _main at 0x0000022DA06C37E0>
+  File "C:\Users\kaust\AppData\Local\Programs\Python\Python311\Lib\multiprocessing\spawn.py", line 135, in _main
+    return self._bootstrap(parent_sentinel)
+           │    │          └ 348
+           │    └ <function BaseProcess._bootstrap at 0x0000022DA04A4220>
+           └ <SpawnProcess name='SpawnProcess-1' parent=31048 started>
+  File "C:\Users\kaust\AppData\Local\Programs\Python\Python311\Lib\multiprocessing\process.py", line 314, in _bootstrap
+    self.run()
+    │    └ <function BaseProcess.run at 0x0000022DA049F740>
+    └ <SpawnProcess name='SpawnProcess-1' parent=31048 started>
+  File "C:\Users\kaust\AppData\Local\Programs\Python\Python311\Lib\multiprocessing\process.py", line 108, in run
+    self._target(*self._args, **self._kwargs)
+    │    │        │    │        │    └ {'config': <uvicorn.config.Config object at 0x0000022DA068F410>, 'target': <bound method Server.run of <uvicorn.server.Server...
+    │    │        │    │        └ <SpawnProcess name='SpawnProcess-1' parent=31048 started>
+    │    │        │    └ ()
+    │    │        └ <SpawnProcess name='SpawnProcess-1' parent=31048 started>
+    │    └ <function subprocess_started at 0x0000022DA2AC9260>
+    └ <SpawnProcess name='SpawnProcess-1' parent=31048 started>
+  File "D:\Programming\portfolio_projects\DocuLens\venv\Lib\site-packages\uvicorn\_subprocess.py", line 78, in subprocess_started
+    target(sockets=sockets)
+    │              └ [<socket.socket fd=772, family=2, type=1, proto=6, laddr=('0.0.0.0', 8000)>]
+    └ <bound method Server.run of <uvicorn.server.Server object at 0x0000022DA2C4FA50>>
+  File "D:\Programming\portfolio_projects\DocuLens\venv\Lib\site-packages\uvicorn\server.py", line 62, in run
+    return asyncio.run(self.serve(sockets=sockets))
+           │       │   │    │             └ [<socket.socket fd=772, family=2, type=1, proto=6, laddr=('0.0.0.0', 8000)>]
+           │       │   │    └ <function Server.serve at 0x0000022DA2AC82C0>
+           │       │   └ <uvicorn.server.Server object at 0x0000022DA2C4FA50>
+           │       └ <function run at 0x0000022DA23AFC40>
+           └ <module 'asyncio' from 'C:\\Users\\kaust\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\asyncio\\__init__.py'>
+  File "C:\Users\kaust\AppData\Local\Programs\Python\Python311\Lib\asyncio\runners.py", line 190, in run
+    return runner.run(main)
+           │      │   └ <coroutine object Server.serve at 0x0000022DA2C58480>
+           │      └ <function Runner.run at 0x0000022DA23B0040>
+           └ <asyncio.runners.Runner object at 0x0000022DA2C4F050>
+  File "C:\Users\kaust\AppData\Local\Programs\Python\Python311\Lib\asyncio\runners.py", line 118, in run
+    return self._loop.run_until_complete(task)
+           │    │     │                  └ <Task pending name='Task-1' coro=<Server.serve() running at D:\Programming\portfolio_projects\DocuLens\venv\Lib\site-packages...
+           │    │     └ <function BaseEventLoop.run_until_complete at 0x0000022DA23ADB20>
+           │    └ <_WindowsSelectorEventLoop running=True closed=False debug=False>
+           └ <asyncio.runners.Runner object at 0x0000022DA2C4F050>
+  File "C:\Users\kaust\AppData\Local\Programs\Python\Python311\Lib\asyncio\base_events.py", line 641, in run_until_complete
+    self.run_forever()
+    │    └ <function BaseEventLoop.run_forever at 0x0000022DA23ADA80>
+    └ <_WindowsSelectorEventLoop running=True closed=False debug=False>
+  File "C:\Users\kaust\AppData\Local\Programs\Python\Python311\Lib\asyncio\base_events.py", line 608, in run_forever
+    self._run_once()
+    │    └ <function BaseEventLoop._run_once at 0x0000022DA23AF880>
+    └ <_WindowsSelectorEventLoop running=True closed=False debug=False>
+  File "C:\Users\kaust\AppData\Local\Programs\Python\Python311\Lib\asyncio\base_events.py", line 1936, in _run_once
+    handle._run()
+    │      └ <function Handle._run at 0x0000022DA22ECEA0>
+    └ <Handle Task.task_wakeup(<Future finished result=None>)>
+  File "C:\Users\kaust\AppData\Local\Programs\Python\Python311\Lib\asyncio\events.py", line 84, in _run
+    self._context.run(self._callback, *self._args)
+    │    │            │    │           │    └ <member '_args' of 'Handle' objects>
+    │    │            │    │           └ <Handle Task.task_wakeup(<Future finished result=None>)>
+    │    │            │    └ <member '_callback' of 'Handle' objects>
+    │    │            └ <Handle Task.task_wakeup(<Future finished result=None>)>
+    │    └ <member '_context' of 'Handle' objects>
+    └ <Handle Task.task_wakeup(<Future finished result=None>)>
+  File "D:\Programming\portfolio_projects\DocuLens\venv\Lib\site-packages\uvicorn\protocols\http\httptools_impl.py", line 419, in run_asgi
+    result = await app(  # type: ignore[func-returns-value]
+                   └ <uvicorn.middleware.proxy_headers.ProxyHeadersMiddleware object at 0x0000022DA7EF6290>
+  File "D:\Programming\portfolio_projects\DocuLens\venv\Lib\site-packages\uvicorn\middleware\proxy_headers.py", line 84, in __call__
+    return await self.app(scope, receive, send)
+                 │    │   │      │        └ <bound method RequestResponseCycle.send of <uvicorn.protocols.http.httptools_impl.RequestResponseCycle object at 0x0000022DA8...
+                 │    │   │      └ <bound method RequestResponseCycle.receive of <uvicorn.protocols.http.httptools_impl.RequestResponseCycle object at 0x0000022...
+                 │    │   └ {'type': 'http', 'asgi': {'version': '3.0', 'spec_version': '2.3'}, 'http_version': '1.1', 'server': ('127.0.0.1', 8000), 'cl...
+                 │    └ <fastapi.applications.FastAPI object at 0x0000022DA5BB6310>
+                 └ <uvicorn.middleware.proxy_headers.ProxyHeadersMiddleware object at 0x0000022DA7EF6290>
+  File "D:\Programming\portfolio_projects\DocuLens\venv\Lib\site-packages\fastapi\applications.py", line 1054, in __call__
+    await super().__call__(scope, receive, send)
+                           │      │        └ <bound method RequestResponseCycle.send of <uvicorn.protocols.http.httptools_impl.RequestResponseCycle object at 0x0000022DA8...
+                           │      └ <bound method RequestResponseCycle.receive of <uvicorn.protocols.http.httptools_impl.RequestResponseCycle object at 0x0000022...
+                           └ {'type': 'http', 'asgi': {'version': '3.0', 'spec_version': '2.3'}, 'http_version': '1.1', 'server': ('127.0.0.1', 8000), 'cl...
+  File "D:\Programming\portfolio_projects\DocuLens\venv\Lib\site-packages\starlette\applications.py", line 123, in __call__
+    await self.middleware_stack(scope, receive, send)
+          │    │                │      │        └ <bound method RequestResponseCycle.send of <uvicorn.protocols.http.httptools_impl.RequestResponseCycle object at 0x0000022DA8...
+          │    │                │      └ <bound method RequestResponseCycle.receive of <uvicorn.protocols.http.httptools_impl.RequestResponseCycle object at 0x0000022...
+          │    │                └ {'type': 'http', 'asgi': {'version': '3.0', 'spec_version': '2.3'}, 'http_version': '1.1', 'server': ('127.0.0.1', 8000), 'cl...
+          │    └ <starlette.middleware.errors.ServerErrorMiddleware object at 0x0000022DA8060950>
+          └ <fastapi.applications.FastAPI object at 0x0000022DA5BB6310>
+> File "D:\Programming\portfolio_projects\DocuLens\venv\Lib\site-packages\starlette\middleware\errors.py", line 164, in __call__
+    await self.app(scope, receive, _send)
+          │    │   │      │        └ <function ServerErrorMiddleware.__call__.<locals>._send at 0x0000022DA898DF80>
+          │    │   │      └ <bound method RequestResponseCycle.receive of <uvicorn.protocols.http.httptools_impl.RequestResponseCycle object at 0x0000022...
+          │    │   └ {'type': 'http', 'asgi': {'version': '3.0', 'spec_version': '2.3'}, 'http_version': '1.1', 'server': ('127.0.0.1', 8000), 'cl...
+          │    └ <starlette.middleware.gzip.GZipMiddleware object at 0x0000022DA81369D0>
+          └ <starlette.middleware.errors.ServerErrorMiddleware object at 0x0000022DA8060950>
+  File "D:\Programming\portfolio_projects\DocuLens\venv\Lib\site-packages\starlette\middleware\gzip.py", line 24, in __call__
+    await responder(scope, receive, send)
+          │         │      │        └ <function ServerErrorMiddleware.__call__.<locals>._send at 0x0000022DA898DF80>
+          │         │      └ <bound method RequestResponseCycle.receive of <uvicorn.protocols.http.httptools_impl.RequestResponseCycle object at 0x0000022...
+          │         └ {'type': 'http', 'asgi': {'version': '3.0', 'spec_version': '2.3'}, 'http_version': '1.1', 'server': ('127.0.0.1', 8000), 'cl...
+          └ <starlette.middleware.gzip.GZipResponder object at 0x0000022DA8A09D50>
+  File "D:\Programming\portfolio_projects\DocuLens\venv\Lib\site-packages\starlette\middleware\gzip.py", line 44, in __call__
+    await self.app(scope, receive, self.send_with_gzip)
+          │    │   │      │        │    └ <function GZipResponder.send_with_gzip at 0x0000022DA4D82660>
+          │    │   │      │        └ <starlette.middleware.gzip.GZipResponder object at 0x0000022DA8A09D50>
+          │    │   │      └ <bound method RequestResponseCycle.receive of <uvicorn.protocols.http.httptools_impl.RequestResponseCycle object at 0x0000022...
+          │    │   └ {'type': 'http', 'asgi': {'version': '3.0', 'spec_version': '2.3'}, 'http_version': '1.1', 'server': ('127.0.0.1', 8000), 'cl...
+          │    └ <starlette.middleware.cors.CORSMiddleware object at 0x0000022DA7FFF090>
+          └ <starlette.middleware.gzip.GZipResponder object at 0x0000022DA8A09D50>
+  File "D:\Programming\portfolio_projects\DocuLens\venv\Lib\site-packages\starlette\middleware\cors.py", line 91, in __call__
+    await self.simple_response(scope, receive, send, request_headers=headers)
+          │    │               │      │        │                     └ Headers({'host': 'localhost:8000', 'connection': 'keep-alive', 'sec-ch-ua-platform': '"Windows"', 'authorization': 'Bearer ey...
+          │    │               │      │        └ <bound method GZipResponder.send_with_gzip of <starlette.middleware.gzip.GZipResponder object at 0x0000022DA8A09D50>>
+          │    │               │      └ <bound method RequestResponseCycle.receive of <uvicorn.protocols.http.httptools_impl.RequestResponseCycle object at 0x0000022...
+          │    │               └ {'type': 'http', 'asgi': {'version': '3.0', 'spec_version': '2.3'}, 'http_version': '1.1', 'server': ('127.0.0.1', 8000), 'cl...
+          │    └ <function CORSMiddleware.simple_response at 0x0000022DA4D80AE0>
+          └ <starlette.middleware.cors.CORSMiddleware object at 0x0000022DA7FFF090>
+  File "D:\Programming\portfolio_projects\DocuLens\venv\Lib\site-packages\starlette\middleware\cors.py", line 146, in simple_response
+    await self.app(scope, receive, send)
+          │    │   │      │        └ functools.partial(<bound method CORSMiddleware.send of <starlette.middleware.cors.CORSMiddleware object at 0x0000022DA7FFF090...
+          │    │   │      └ <bound method RequestResponseCycle.receive of <uvicorn.protocols.http.httptools_impl.RequestResponseCycle object at 0x0000022...
+          │    │   └ {'type': 'http', 'asgi': {'version': '3.0', 'spec_version': '2.3'}, 'http_version': '1.1', 'server': ('127.0.0.1', 8000), 'cl...
+          │    └ <starlette.middleware.exceptions.ExceptionMiddleware object at 0x0000022DA7FB3950>
+          └ <starlette.middleware.cors.CORSMiddleware object at 0x0000022DA7FFF090>
+  File "D:\Programming\portfolio_projects\DocuLens\venv\Lib\site-packages\starlette\middleware\exceptions.py", line 62, in __call__
+    await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+          │                            │    │    │     │      │        └ functools.partial(<bound method CORSMiddleware.send of <starlette.middleware.cors.CORSMiddleware object at 0x0000022DA7FFF090...
+          │                            │    │    │     │      └ <bound method RequestResponseCycle.receive of <uvicorn.protocols.http.httptools_impl.RequestResponseCycle object at 0x0000022...
+          │                            │    │    │     └ {'type': 'http', 'asgi': {'version': '3.0', 'spec_version': '2.3'}, 'http_version': '1.1', 'server': ('127.0.0.1', 8000), 'cl...
+          │                            │    │    └ <starlette.requests.Request object at 0x0000022DA8A09E90>
+          │                            │    └ <fastapi.routing.APIRouter object at 0x0000022DA5C006D0>
+          │                            └ <starlette.middleware.exceptions.ExceptionMiddleware object at 0x0000022DA7FB3950>
+          └ <function wrap_app_handling_exceptions at 0x0000022DA4CB76A0>
+  File "D:\Programming\portfolio_projects\DocuLens\venv\Lib\site-packages\starlette\_exception_handler.py", line 64, in wrapped_app
+    raise exc
+  File "D:\Programming\portfolio_projects\DocuLens\venv\Lib\site-packages\starlette\_exception_handler.py", line 53, in wrapped_app
+    await app(scope, receive, sender)
+          │   │      │        └ <function wrap_app_handling_exceptions.<locals>.wrapped_app.<locals>.sender at 0x0000022DA898E160>
+          │   │      └ <bound method RequestResponseCycle.receive of <uvicorn.protocols.http.httptools_impl.RequestResponseCycle object at 0x0000022...
+          │   └ {'type': 'http', 'asgi': {'version': '3.0', 'spec_version': '2.3'}, 'http_version': '1.1', 'server': ('127.0.0.1', 8000), 'cl...
+          └ <fastapi.routing.APIRouter object at 0x0000022DA5C006D0>
+  File "D:\Programming\portfolio_projects\DocuLens\venv\Lib\site-packages\starlette\routing.py", line 762, in __call__
+    await self.middleware_stack(scope, receive, send)
+          │    │                │      │        └ <function wrap_app_handling_exceptions.<locals>.wrapped_app.<locals>.sender at 0x0000022DA898E160>
+          │    │                │      └ <bound method RequestResponseCycle.receive of <uvicorn.protocols.http.httptools_impl.RequestResponseCycle object at 0x0000022...
+          │    │                └ {'type': 'http', 'asgi': {'version': '3.0', 'spec_version': '2.3'}, 'http_version': '1.1', 'server': ('127.0.0.1', 8000), 'cl...
+          │    └ <bound method Router.app of <fastapi.routing.APIRouter object at 0x0000022DA5C006D0>>
+          └ <fastapi.routing.APIRouter object at 0x0000022DA5C006D0>
+  File "D:\Programming\portfolio_projects\DocuLens\venv\Lib\site-packages\starlette\routing.py", line 782, in app
+    await route.handle(scope, receive, send)
+          │     │      │      │        └ <function wrap_app_handling_exceptions.<locals>.wrapped_app.<locals>.sender at 0x0000022DA898E160>
+          │     │      │      └ <bound method RequestResponseCycle.receive of <uvicorn.protocols.http.httptools_impl.RequestResponseCycle object at 0x0000022...
+          │     │      └ {'type': 'http', 'asgi': {'version': '3.0', 'spec_version': '2.3'}, 'http_version': '1.1', 'server': ('127.0.0.1', 8000), 'cl...
+          │     └ <function Route.handle at 0x0000022DA4CE4EA0>
+          └ APIRoute(path='/api/v1/videos/sections/{section_id}', name='get_section_videos', methods=['GET'])
+  File "D:\Programming\portfolio_projects\DocuLens\venv\Lib\site-packages\starlette\routing.py", line 297, in handle
+    await self.app(scope, receive, send)
+          │    │   │      │        └ <function wrap_app_handling_exceptions.<locals>.wrapped_app.<locals>.sender at 0x0000022DA898E160>
+          │    │   │      └ <bound method RequestResponseCycle.receive of <uvicorn.protocols.http.httptools_impl.RequestResponseCycle object at 0x0000022...
+          │    │   └ {'type': 'http', 'asgi': {'version': '3.0', 'spec_version': '2.3'}, 'http_version': '1.1', 'server': ('127.0.0.1', 8000), 'cl...
+          │    └ <function request_response.<locals>.app at 0x0000022DA8215EE0>
+          └ APIRoute(path='/api/v1/videos/sections/{section_id}', name='get_section_videos', methods=['GET'])
+  File "D:\Programming\portfolio_projects\DocuLens\venv\Lib\site-packages\starlette\routing.py", line 77, in app
+    await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+          │                            │    │        │      │        └ <function wrap_app_handling_exceptions.<locals>.wrapped_app.<locals>.sender at 0x0000022DA898E160>
+          │                            │    │        │      └ <bound method RequestResponseCycle.receive of <uvicorn.protocols.http.httptools_impl.RequestResponseCycle object at 0x0000022...
+          │                            │    │        └ {'type': 'http', 'asgi': {'version': '3.0', 'spec_version': '2.3'}, 'http_version': '1.1', 'server': ('127.0.0.1', 8000), 'cl...
+          │                            │    └ <starlette.requests.Request object at 0x0000022DA8A0AE50>
+          │                            └ <function request_response.<locals>.app.<locals>.app at 0x0000022DA898E200>
+          └ <function wrap_app_handling_exceptions at 0x0000022DA4CB76A0>
+  File "D:\Programming\portfolio_projects\DocuLens\venv\Lib\site-packages\starlette\_exception_handler.py", line 64, in wrapped_app
+    raise exc
+  File "D:\Programming\portfolio_projects\DocuLens\venv\Lib\site-packages\starlette\_exception_handler.py", line 53, in wrapped_app
+    await app(scope, receive, sender)
+          │   │      │        └ <function wrap_app_handling_exceptions.<locals>.wrapped_app.<locals>.sender at 0x0000022DA898E340>
+          │   │      └ <bound method RequestResponseCycle.receive of <uvicorn.protocols.http.httptools_impl.RequestResponseCycle object at 0x0000022...
+          │   └ {'type': 'http', 'asgi': {'version': '3.0', 'spec_version': '2.3'}, 'http_version': '1.1', 'server': ('127.0.0.1', 8000), 'cl...
+          └ <function request_response.<locals>.app.<locals>.app at 0x0000022DA898E200>
+  File "D:\Programming\portfolio_projects\DocuLens\venv\Lib\site-packages\starlette\routing.py", line 72, in app
+    response = await func(request)
+                     │    └ <starlette.requests.Request object at 0x0000022DA8A0AE50>
+                     └ <function get_request_handler.<locals>.app at 0x0000022DA8216160>
+  File "D:\Programming\portfolio_projects\DocuLens\venv\Lib\site-packages\fastapi\routing.py", line 299, in app
+    raise e
+  File "D:\Programming\portfolio_projects\DocuLens\venv\Lib\site-packages\fastapi\routing.py", line 294, in app
+    raw_response = await run_endpoint_function(
+                         └ <function run_endpoint_function at 0x0000022DA4CB6DE0>
+  File "D:\Programming\portfolio_projects\DocuLens\venv\Lib\site-packages\fastapi\routing.py", line 191, in run_endpoint_function
+    return await dependant.call(**values)
+                 │         │      └ {'db': <sqlalchemy.ext.asyncio.session.AsyncSession object at 0x0000022DA8A0B4D0>, 'section_id': UUID('9e6bbe13-1ca1-438c-add...
+                 │         └ <function get_section_videos at 0x0000022DA7F23B00>
+                 └ <fastapi.dependencies.models.Dependant object at 0x0000022DA825CD90>
+
+  File "D:\Programming\portfolio_projects\DocuLens\backend\app\api\v1\videos.py", line 88, in get_section_videos
+    .order_by(VideoResource.order_index)
+              └ <class 'app.models.video_resource.VideoResource'>
+
+AttributeError: type object 'VideoResource' has no attribute 'order_index'
+2026-01-26 00:28:05 | ERROR    | app.main:general_exception_handler:192 - Unhandled exception on /api/v1/practice/sections/9e6bbe13-1ca1-438c-add4-1e26d8c941e7: type object 'PracticeProblem' has no attribute 'order_index'
+Traceback (most recent call last):
+
+  File "<string>", line 1, in <module>
+  File "C:\Users\kaust\AppData\Local\Programs\Python\Python311\Lib\multiprocessing\spawn.py", line 122, in spawn_main
+    exitcode = _main(fd, parent_sentinel)
+               │     │   └ 348
+               │     └ 3
+               └ <function _main at 0x0000022DA06C37E0>
+  File "C:\Users\kaust\AppData\Local\Programs\Python\Python311\Lib\multiprocessing\spawn.py", line 135, in _main
+    return self._bootstrap(parent_sentinel)
+           │    │          └ 348
+           │    └ <function BaseProcess._bootstrap at 0x0000022DA04A4220>
+           └ <SpawnProcess name='SpawnProcess-1' parent=31048 started>
+  File "C:\Users\kaust\AppData\Local\Programs\Python\Python311\Lib\multiprocessing\process.py", line 314, in _bootstrap
+    self.run()
+    │    └ <function BaseProcess.run at 0x0000022DA049F740>
+    └ <SpawnProcess name='SpawnProcess-1' parent=31048 started>
+  File "C:\Users\kaust\AppData\Local\Programs\Python\Python311\Lib\multiprocessing\process.py", line 108, in run
+    self._target(*self._args, **self._kwargs)
+    │    │        │    │        │    └ {'config': <uvicorn.config.Config object at 0x0000022DA068F410>, 'target': <bound method Server.run of <uvicorn.server.Server...
+    │    │        │    │        └ <SpawnProcess name='SpawnProcess-1' parent=31048 started>
+    │    │        │    └ ()
+    │    │        └ <SpawnProcess name='SpawnProcess-1' parent=31048 started>
+    │    └ <function subprocess_started at 0x0000022DA2AC9260>
+    └ <SpawnProcess name='SpawnProcess-1' parent=31048 started>
+  File "D:\Programming\portfolio_projects\DocuLens\venv\Lib\site-packages\uvicorn\_subprocess.py", line 78, in subprocess_started
+    target(sockets=sockets)
+    │              └ [<socket.socket fd=772, family=2, type=1, proto=6, laddr=('0.0.0.0', 8000)>]
+    └ <bound method Server.run of <uvicorn.server.Server object at 0x0000022DA2C4FA50>>
+  File "D:\Programming\portfolio_projects\DocuLens\venv\Lib\site-packages\uvicorn\server.py", line 62, in run
+    return asyncio.run(self.serve(sockets=sockets))
+           │       │   │    │             └ [<socket.socket fd=772, family=2, type=1, proto=6, laddr=('0.0.0.0', 8000)>]
+           │       │   │    └ <function Server.serve at 0x0000022DA2AC82C0>
+           │       │   └ <uvicorn.server.Server object at 0x0000022DA2C4FA50>
+           │       └ <function run at 0x0000022DA23AFC40>
+           └ <module 'asyncio' from 'C:\\Users\\kaust\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\asyncio\\__init__.py'>
+  File "C:\Users\kaust\AppData\Local\Programs\Python\Python311\Lib\asyncio\runners.py", line 190, in run
+    return runner.run(main)
+           │      │   └ <coroutine object Server.serve at 0x0000022DA2C58480>
+           │      └ <function Runner.run at 0x0000022DA23B0040>
+           └ <asyncio.runners.Runner object at 0x0000022DA2C4F050>
+  File "C:\Users\kaust\AppData\Local\Programs\Python\Python311\Lib\asyncio\runners.py", line 118, in run
+    return self._loop.run_until_complete(task)
+           │    │     │                  └ <Task pending name='Task-1' coro=<Server.serve() running at D:\Programming\portfolio_projects\DocuLens\venv\Lib\site-packages...
+           │    │     └ <function BaseEventLoop.run_until_complete at 0x0000022DA23ADB20>
+           │    └ <_WindowsSelectorEventLoop running=True closed=False debug=False>
+           └ <asyncio.runners.Runner object at 0x0000022DA2C4F050>
+  File "C:\Users\kaust\AppData\Local\Programs\Python\Python311\Lib\asyncio\base_events.py", line 641, in run_until_complete
+    self.run_forever()
+    │    └ <function BaseEventLoop.run_forever at 0x0000022DA23ADA80>
+    └ <_WindowsSelectorEventLoop running=True closed=False debug=False>
+  File "C:\Users\kaust\AppData\Local\Programs\Python\Python311\Lib\asyncio\base_events.py", line 608, in run_forever
+    self._run_once()
+    │    └ <function BaseEventLoop._run_once at 0x0000022DA23AF880>
+    └ <_WindowsSelectorEventLoop running=True closed=False debug=False>
+  File "C:\Users\kaust\AppData\Local\Programs\Python\Python311\Lib\asyncio\base_events.py", line 1936, in _run_once
+    handle._run()
+    │      └ <function Handle._run at 0x0000022DA22ECEA0>
+    └ <Handle Task.task_wakeup(<Future finished result=None>)>
+  File "C:\Users\kaust\AppData\Local\Programs\Python\Python311\Lib\asyncio\events.py", line 84, in _run
+    self._context.run(self._callback, *self._args)
+    │    │            │    │           │    └ <member '_args' of 'Handle' objects>
+    │    │            │    │           └ <Handle Task.task_wakeup(<Future finished result=None>)>
+    │    │            │    └ <member '_callback' of 'Handle' objects>
+    │    │            └ <Handle Task.task_wakeup(<Future finished result=None>)>
+    │    └ <member '_context' of 'Handle' objects>
+    └ <Handle Task.task_wakeup(<Future finished result=None>)>
+  File "D:\Programming\portfolio_projects\DocuLens\venv\Lib\site-packages\uvicorn\protocols\http\httptools_impl.py", line 419, in run_asgi
+    result = await app(  # type: ignore[func-returns-value]
+                   └ <uvicorn.middleware.proxy_headers.ProxyHeadersMiddleware object at 0x0000022DA7EF6290>
+  File "D:\Programming\portfolio_projects\DocuLens\venv\Lib\site-packages\uvicorn\middleware\proxy_headers.py", line 84, in __call__
+    return await self.app(scope, receive, send)
+                 │    │   │      │        └ <bound method RequestResponseCycle.send of <uvicorn.protocols.http.httptools_impl.RequestResponseCycle object at 0x0000022DA8...
+                 │    │   │      └ <bound method RequestResponseCycle.receive of <uvicorn.protocols.http.httptools_impl.RequestResponseCycle object at 0x0000022...
+                 │    │   └ {'type': 'http', 'asgi': {'version': '3.0', 'spec_version': '2.3'}, 'http_version': '1.1', 'server': ('127.0.0.1', 8000), 'cl...
+                 │    └ <fastapi.applications.FastAPI object at 0x0000022DA5BB6310>
+                 └ <uvicorn.middleware.proxy_headers.ProxyHeadersMiddleware object at 0x0000022DA7EF6290>
+  File "D:\Programming\portfolio_projects\DocuLens\venv\Lib\site-packages\fastapi\applications.py", line 1054, in __call__
+    await super().__call__(scope, receive, send)
+                           │      │        └ <bound method RequestResponseCycle.send of <uvicorn.protocols.http.httptools_impl.RequestResponseCycle object at 0x0000022DA8...
+                           │      └ <bound method RequestResponseCycle.receive of <uvicorn.protocols.http.httptools_impl.RequestResponseCycle object at 0x0000022...
+                           └ {'type': 'http', 'asgi': {'version': '3.0', 'spec_version': '2.3'}, 'http_version': '1.1', 'server': ('127.0.0.1', 8000), 'cl...
+  File "D:\Programming\portfolio_projects\DocuLens\venv\Lib\site-packages\starlette\applications.py", line 123, in __call__
+    await self.middleware_stack(scope, receive, send)
+          │    │                │      │        └ <bound method RequestResponseCycle.send of <uvicorn.protocols.http.httptools_impl.RequestResponseCycle object at 0x0000022DA8...
+          │    │                │      └ <bound method RequestResponseCycle.receive of <uvicorn.protocols.http.httptools_impl.RequestResponseCycle object at 0x0000022...
+          │    │                └ {'type': 'http', 'asgi': {'version': '3.0', 'spec_version': '2.3'}, 'http_version': '1.1', 'server': ('127.0.0.1', 8000), 'cl...
+          │    └ <starlette.middleware.errors.ServerErrorMiddleware object at 0x0000022DA8060950>
+          └ <fastapi.applications.FastAPI object at 0x0000022DA5BB6310>
+> File "D:\Programming\portfolio_projects\DocuLens\venv\Lib\site-packages\starlette\middleware\errors.py", line 164, in __call__
+    await self.app(scope, receive, _send)
+          │    │   │      │        └ <function ServerErrorMiddleware.__call__.<locals>._send at 0x0000022DA8821760>
+          │    │   │      └ <bound method RequestResponseCycle.receive of <uvicorn.protocols.http.httptools_impl.RequestResponseCycle object at 0x0000022...
+          │    │   └ {'type': 'http', 'asgi': {'version': '3.0', 'spec_version': '2.3'}, 'http_version': '1.1', 'server': ('127.0.0.1', 8000), 'cl...
+          │    └ <starlette.middleware.gzip.GZipMiddleware object at 0x0000022DA81369D0>
+          └ <starlette.middleware.errors.ServerErrorMiddleware object at 0x0000022DA8060950>
+  File "D:\Programming\portfolio_projects\DocuLens\venv\Lib\site-packages\starlette\middleware\gzip.py", line 24, in __call__
+    await responder(scope, receive, send)
+          │         │      │        └ <function ServerErrorMiddleware.__call__.<locals>._send at 0x0000022DA8821760>
+          │         │      └ <bound method RequestResponseCycle.receive of <uvicorn.protocols.http.httptools_impl.RequestResponseCycle object at 0x0000022...
+          │         └ {'type': 'http', 'asgi': {'version': '3.0', 'spec_version': '2.3'}, 'http_version': '1.1', 'server': ('127.0.0.1', 8000), 'cl...
+          └ <starlette.middleware.gzip.GZipResponder object at 0x0000022DA8A0DBD0>
+  File "D:\Programming\portfolio_projects\DocuLens\venv\Lib\site-packages\starlette\middleware\gzip.py", line 44, in __call__
+    await self.app(scope, receive, self.send_with_gzip)
+          │    │   │      │        │    └ <function GZipResponder.send_with_gzip at 0x0000022DA4D82660>
+          │    │   │      │        └ <starlette.middleware.gzip.GZipResponder object at 0x0000022DA8A0DBD0>
+          │    │   │      └ <bound method RequestResponseCycle.receive of <uvicorn.protocols.http.httptools_impl.RequestResponseCycle object at 0x0000022...
+          │    │   └ {'type': 'http', 'asgi': {'version': '3.0', 'spec_version': '2.3'}, 'http_version': '1.1', 'server': ('127.0.0.1', 8000), 'cl...
+          │    └ <starlette.middleware.cors.CORSMiddleware object at 0x0000022DA7FFF090>
+          └ <starlette.middleware.gzip.GZipResponder object at 0x0000022DA8A0DBD0>
+  File "D:\Programming\portfolio_projects\DocuLens\venv\Lib\site-packages\starlette\middleware\cors.py", line 91, in __call__
+    await self.simple_response(scope, receive, send, request_headers=headers)
+          │    │               │      │        │                     └ Headers({'host': 'localhost:8000', 'connection': 'keep-alive', 'sec-ch-ua-platform': '"Windows"', 'authorization': 'Bearer ey...
+          │    │               │      │        └ <bound method GZipResponder.send_with_gzip of <starlette.middleware.gzip.GZipResponder object at 0x0000022DA8A0DBD0>>
+          │    │               │      └ <bound method RequestResponseCycle.receive of <uvicorn.protocols.http.httptools_impl.RequestResponseCycle object at 0x0000022...
+          │    │               └ {'type': 'http', 'asgi': {'version': '3.0', 'spec_version': '2.3'}, 'http_version': '1.1', 'server': ('127.0.0.1', 8000), 'cl...
+          │    └ <function CORSMiddleware.simple_response at 0x0000022DA4D80AE0>
+          └ <starlette.middleware.cors.CORSMiddleware object at 0x0000022DA7FFF090>
+  File "D:\Programming\portfolio_projects\DocuLens\venv\Lib\site-packages\starlette\middleware\cors.py", line 146, in simple_response
+    await self.app(scope, receive, send)
+          │    │   │      │        └ functools.partial(<bound method CORSMiddleware.send of <starlette.middleware.cors.CORSMiddleware object at 0x0000022DA7FFF090...
+          │    │   │      └ <bound method RequestResponseCycle.receive of <uvicorn.protocols.http.httptools_impl.RequestResponseCycle object at 0x0000022...
+          │    │   └ {'type': 'http', 'asgi': {'version': '3.0', 'spec_version': '2.3'}, 'http_version': '1.1', 'server': ('127.0.0.1', 8000), 'cl...
+          │    └ <starlette.middleware.exceptions.ExceptionMiddleware object at 0x0000022DA7FB3950>
+          └ <starlette.middleware.cors.CORSMiddleware object at 0x0000022DA7FFF090>
+  File "D:\Programming\portfolio_projects\DocuLens\venv\Lib\site-packages\starlette\middleware\exceptions.py", line 62, in __call__
+    await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+          │                            │    │    │     │      │        └ functools.partial(<bound method CORSMiddleware.send of <starlette.middleware.cors.CORSMiddleware object at 0x0000022DA7FFF090...
+          │                            │    │    │     │      └ <bound method RequestResponseCycle.receive of <uvicorn.protocols.http.httptools_impl.RequestResponseCycle object at 0x0000022...
+          │                            │    │    │     └ {'type': 'http', 'asgi': {'version': '3.0', 'spec_version': '2.3'}, 'http_version': '1.1', 'server': ('127.0.0.1', 8000), 'cl...
+          │                            │    │    └ <starlette.requests.Request object at 0x0000022DA82FBD90>
+          │                            │    └ <fastapi.routing.APIRouter object at 0x0000022DA5C006D0>
+          │                            └ <starlette.middleware.exceptions.ExceptionMiddleware object at 0x0000022DA7FB3950>
+          └ <function wrap_app_handling_exceptions at 0x0000022DA4CB76A0>
+  File "D:\Programming\portfolio_projects\DocuLens\venv\Lib\site-packages\starlette\_exception_handler.py", line 64, in wrapped_app
+    raise exc
+  File "D:\Programming\portfolio_projects\DocuLens\venv\Lib\site-packages\starlette\_exception_handler.py", line 53, in wrapped_app
+    await app(scope, receive, sender)
+          │   │      │        └ <function wrap_app_handling_exceptions.<locals>.wrapped_app.<locals>.sender at 0x0000022DA8820860>
+          │   │      └ <bound method RequestResponseCycle.receive of <uvicorn.protocols.http.httptools_impl.RequestResponseCycle object at 0x0000022...
+          │   └ {'type': 'http', 'asgi': {'version': '3.0', 'spec_version': '2.3'}, 'http_version': '1.1', 'server': ('127.0.0.1', 8000), 'cl...
+          └ <fastapi.routing.APIRouter object at 0x0000022DA5C006D0>
+  File "D:\Programming\portfolio_projects\DocuLens\venv\Lib\site-packages\starlette\routing.py", line 762, in __call__
+    await self.middleware_stack(scope, receive, send)
+          │    │                │      │        └ <function wrap_app_handling_exceptions.<locals>.wrapped_app.<locals>.sender at 0x0000022DA8820860>
+          │    │                │      └ <bound method RequestResponseCycle.receive of <uvicorn.protocols.http.httptools_impl.RequestResponseCycle object at 0x0000022...
+          │    │                └ {'type': 'http', 'asgi': {'version': '3.0', 'spec_version': '2.3'}, 'http_version': '1.1', 'server': ('127.0.0.1', 8000), 'cl...
+          │    └ <bound method Router.app of <fastapi.routing.APIRouter object at 0x0000022DA5C006D0>>
+          └ <fastapi.routing.APIRouter object at 0x0000022DA5C006D0>
+  File "D:\Programming\portfolio_projects\DocuLens\venv\Lib\site-packages\starlette\routing.py", line 782, in app
+    await route.handle(scope, receive, send)
+          │     │      │      │        └ <function wrap_app_handling_exceptions.<locals>.wrapped_app.<locals>.sender at 0x0000022DA8820860>
+          │     │      │      └ <bound method RequestResponseCycle.receive of <uvicorn.protocols.http.httptools_impl.RequestResponseCycle object at 0x0000022...
+          │     │      └ {'type': 'http', 'asgi': {'version': '3.0', 'spec_version': '2.3'}, 'http_version': '1.1', 'server': ('127.0.0.1', 8000), 'cl...
+          │     └ <function Route.handle at 0x0000022DA4CE4EA0>
+          └ APIRoute(path='/api/v1/practice/sections/{section_id}', name='get_section_problems', methods=['GET'])
+  File "D:\Programming\portfolio_projects\DocuLens\venv\Lib\site-packages\starlette\routing.py", line 297, in handle
+    await self.app(scope, receive, send)
+          │    │   │      │        └ <function wrap_app_handling_exceptions.<locals>.wrapped_app.<locals>.sender at 0x0000022DA8820860>
+          │    │   │      └ <bound method RequestResponseCycle.receive of <uvicorn.protocols.http.httptools_impl.RequestResponseCycle object at 0x0000022...
+          │    │   └ {'type': 'http', 'asgi': {'version': '3.0', 'spec_version': '2.3'}, 'http_version': '1.1', 'server': ('127.0.0.1', 8000), 'cl...
+          │    └ <function request_response.<locals>.app at 0x0000022DA8215440>
+          └ APIRoute(path='/api/v1/practice/sections/{section_id}', name='get_section_problems', methods=['GET'])
+  File "D:\Programming\portfolio_projects\DocuLens\venv\Lib\site-packages\starlette\routing.py", line 77, in app
+    await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+          │                            │    │        │      │        └ <function wrap_app_handling_exceptions.<locals>.wrapped_app.<locals>.sender at 0x0000022DA8820860>
+          │                            │    │        │      └ <bound method RequestResponseCycle.receive of <uvicorn.protocols.http.httptools_impl.RequestResponseCycle object at 0x0000022...
+          │                            │    │        └ {'type': 'http', 'asgi': {'version': '3.0', 'spec_version': '2.3'}, 'http_version': '1.1', 'server': ('127.0.0.1', 8000), 'cl...
+          │                            │    └ <starlette.requests.Request object at 0x0000022DA8A079D0>
+          │                            └ <function request_response.<locals>.app.<locals>.app at 0x0000022DA8821440>
+          └ <function wrap_app_handling_exceptions at 0x0000022DA4CB76A0>
+  File "D:\Programming\portfolio_projects\DocuLens\venv\Lib\site-packages\starlette\_exception_handler.py", line 64, in wrapped_app
+    raise exc
+  File "D:\Programming\portfolio_projects\DocuLens\venv\Lib\site-packages\starlette\_exception_handler.py", line 53, in wrapped_app
+    await app(scope, receive, sender)
+          │   │      │        └ <function wrap_app_handling_exceptions.<locals>.wrapped_app.<locals>.sender at 0x0000022DA88209A0>
+          │   │      └ <bound method RequestResponseCycle.receive of <uvicorn.protocols.http.httptools_impl.RequestResponseCycle object at 0x0000022...
+          │   └ {'type': 'http', 'asgi': {'version': '3.0', 'spec_version': '2.3'}, 'http_version': '1.1', 'server': ('127.0.0.1', 8000), 'cl...
+          └ <function request_response.<locals>.app.<locals>.app at 0x0000022DA8821440>
+  File "D:\Programming\portfolio_projects\DocuLens\venv\Lib\site-packages\starlette\routing.py", line 72, in app
+    response = await func(request)
+                     │    └ <starlette.requests.Request object at 0x0000022DA8A079D0>
+                     └ <function get_request_handler.<locals>.app at 0x0000022DA82160C0>
+  File "D:\Programming\portfolio_projects\DocuLens\venv\Lib\site-packages\fastapi\routing.py", line 299, in app
+    raise e
+  File "D:\Programming\portfolio_projects\DocuLens\venv\Lib\site-packages\fastapi\routing.py", line 294, in app
+    raw_response = await run_endpoint_function(
+                         └ <function run_endpoint_function at 0x0000022DA4CB6DE0>
+  File "D:\Programming\portfolio_projects\DocuLens\venv\Lib\site-packages\fastapi\routing.py", line 191, in run_endpoint_function
+    return await dependant.call(**values)
+                 │         │      └ <unprintable dict object>
+                 │         └ <function get_section_problems at 0x0000022DA7F23240>
+                 └ <fastapi.dependencies.models.Dependant object at 0x0000022DA8261BD0>
+
+  File "D:\Programming\portfolio_projects\DocuLens\backend\app\api\v1\practice.py", line 82, in get_section_problems
+    problems = await practice_problem_crud.get_by_section(
+                     │                     └ <function CRUDPracticeProblem.get_by_section at 0x0000022DA7F3C040>
+                     └ <app.crud.practice_problem.CRUDPracticeProblem object at 0x0000022DA7F2E250>
+
+  File "D:\Programming\portfolio_projects\DocuLens\backend\app\crud\practice_problem.py", line 57, in get_by_section
+    query = query.order_by(PracticeProblem.order_index)
+            │     │        └ <class 'app.models.practice_problem.PracticeProblem'>
+            │     └ <function GenerativeSelect.order_by at 0x0000022DA54B2520>
+            └ <sqlalchemy.sql.selectable.Select object at 0x0000022DA87E9110>
+
+AttributeError: type object 'PracticeProblem' has no attribute 'order_index'
+2026-01-26 13:02:08 | ERROR    | app.main:lifespan:39 - Failed to connect to database: 

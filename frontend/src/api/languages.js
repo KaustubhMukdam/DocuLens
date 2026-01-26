@@ -13,6 +13,7 @@ export const languagesAPI = {
     return response.data;
   },
 
+  // FIXED: Remove "languages" from the path - it should be /docs/{slug}/sections
   getSections: async (slug, pathType = null) => {
     const response = await apiClient.get(`/docs/${slug}/sections`, {
       params: pathType ? { path_type: pathType } : {},

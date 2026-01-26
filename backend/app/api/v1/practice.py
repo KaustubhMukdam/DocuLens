@@ -17,6 +17,8 @@ from app.crud.doc_section import CRUDDocSection
 from app.models.doc_section import DocSection
 from app.schemas.response import SuccessResponse
 from app.core.logging import logger
+from sqlalchemy import select, func
+from app.scrapers.leetcode import get_problems_for_topic
 
 router = APIRouter()
 
@@ -272,3 +274,117 @@ async def get_problem_recommendations(
     ]
     
     return mock_recommendations[:max_results]
+
+@router.post("/sections/{section_id}/scrape", response_model=SuccessResponse)
+async def scrape_problems_for_section(
+    section_id: UUID,
+    max_results: int = Query(5, ge=1, le=10),
+    difficulty: Optional[str] = Query(None, pattern="^(easy|medium|hard)$"),
+    db: AsyncSession = Depends(get_db),
+    current_user: User = Depends(get_current_user)
+):
+    """
+    Automatically scrape practice problems from LeetCode for a section.
+    Maps section topics to relevant LeetCode problems.
+    """
+    # Get section with language relationship
+    section_result = await db.execute(
+        select(DocSection)
+        .where(DocSection.id == section_id)
+    )
+    section = section_result.scalar_one_or_none()
+    
+    if not section:
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND,
+            detail="Section not found"
+        )
+    
+    try:
+        # Extract topic from section title (e.g., "Lists and Arrays" -> "array")
+        topic = section.title.lower()
+        
+        # Map common terms to LeetCode tags
+        topic_mapping = {
+            'list': 'array',
+            'dict': 'hash-table',
+            'set': 'hash-table',
+            'function': 'design',
+            'class': 'design',
+            'loop': 'array',
+            'string': 'string',
+            'tree': 'tree',
+            'graph': 'graph',
+            'recursion': 'recursion',
+            'sorting': 'sorting',
+            'search': 'binary-search'
+        }
+        
+        # Find matching topic
+        leetcode_topic = 'array'  # default
+        for key, value in topic_mapping.items():
+            if key in topic:
+                leetcode_topic = value
+                break
+        
+        logger.info(f"Scraping LeetCode problems for topic: {leetcode_topic}")
+        
+        # Get problems from LeetCode scraper
+        problems_data = await get_problems_for_topic(
+            topic=leetcode_topic,
+            difficulty=difficulty,
+            limit=max_results
+        )
+        
+        if not problems_data:
+            return SuccessResponse(
+                message="No problems found for this topic",
+                data={"section_id": str(section_id), "problems_added": 0}
+            )
+        
+        # Get current max order_index
+        max_order_result = await db.execute(
+            select(func.max(PracticeProblem.order_index))
+            .where(PracticeProblem.doc_section_id == section_id)
+        )
+        max_order = max_order_result.scalar() or -1
+        
+        # Import PracticeProblem model
+        from app.models.practice_problem import PracticeProblem
+        
+        # Save to database
+        saved_problems = []
+        for idx, prob_data in enumerate(problems_data):
+            problem = PracticeProblem(
+                doc_section_id=section_id,
+                title=prob_data["title"],
+                platform=prob_data["platform"],
+                difficulty=prob_data["difficulty"],
+                problem_url=prob_data["problem_url"],
+                description=prob_data.get("description"),
+                tags=prob_data.get("tags", []),
+                order_index=max_order + idx + 1
+            )
+            db.add(problem)
+            saved_problems.append(problem.title)
+        
+        await db.commit()
+        
+        logger.info(f"Saved {len(saved_problems)} problems for section {section_id}")
+        
+        return SuccessResponse(
+            message=f"Successfully added {len(saved_problems)} practice problems",
+            data={
+                "section_id": str(section_id),
+                "problems_added": len(saved_problems),
+                "titles": saved_problems,
+                "topic": leetcode_topic
+            }
+        )
+        
+    except Exception as e:
+        logger.error(f"Error scraping problems: {e}")
+        raise HTTPException(
+            status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
+            detail=f"Failed to scrape problems: {str(e)}"
+        )

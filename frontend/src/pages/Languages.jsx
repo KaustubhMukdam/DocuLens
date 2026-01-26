@@ -21,7 +21,7 @@ const Languages = () => {
   }
 
   return (
-    <>
+    <div className="min-h-screen bg-gray-50 dark:bg-gray-900 transition-colors duration-200">
       <Navbar />
       <div className="min-h-screen bg-gray-50">
         <div className="container py-8">
@@ -73,7 +73,7 @@ const Languages = () => {
           )}
         </div>
       </div>
-    </>
+    </div>
   );
 };
 

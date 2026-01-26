@@ -58,13 +58,15 @@ async def get_section_detail(
     db: AsyncSession = Depends(get_db),
     current_user: Optional[User] = Depends(get_optional_current_user)
 ):
-    """Get detailed section content."""
+    """Get detailed section content with videos and practice problems."""
+    
     # Build query with eager loading to prevent MissingGreenlet error
     query = (
         select(DocSection)
         .options(
             selectinload(DocSection.code_examples),
             selectinload(DocSection.video_resources),
+            selectinload(DocSection.practice_problems),  # Add this line
             selectinload(DocSection.language)
         )
         .where(DocSection.id == section_id)
@@ -91,7 +93,6 @@ async def get_section_detail(
         is_completed = progress_result.scalar_one_or_none() is not None
     
     # Convert to dict and add is_completed
-    # In your docs.py file, update the section_dict to include parent_id:
     section_dict = {
         "id": section.id,
         "language_id": section.language_id,
@@ -111,8 +112,8 @@ async def get_section_detail(
         "is_completed": is_completed,
         "code_examples": section.code_examples,
         "video_resources": section.video_resources,
+        "practice_problems": section.practice_problems,  # Add this line
         "children": []
     }
-
     
     return DocSectionDetailResponse(**section_dict)

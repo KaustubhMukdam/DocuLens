@@ -8,6 +8,7 @@ from sqlalchemy import String, Text, Enum as SQLEnum, ForeignKey
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 
 from app.models.base import Base, GUID, StringArray  # Import StringArray
+from sqlalchemy import Integer, Column
 
 
 class ProblemPlatform(str, enum.Enum):
@@ -44,6 +45,8 @@ class PracticeProblem(Base):
     
     # Changed: Use StringArray instead of ARRAY(String)
     topics: Mapped[Optional[list[str]]] = mapped_column(StringArray(), nullable=True)
+
+    order_index = Column(Integer, nullable=True)
     
     doc_section: Mapped["DocSection"] = relationship(
         "DocSection",
