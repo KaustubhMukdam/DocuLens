@@ -6,8 +6,9 @@ from typing import List, Optional
 from uuid import UUID
 from fastapi import APIRouter, Depends, HTTPException, status, Query, BackgroundTasks
 from sqlalchemy.ext.asyncio import AsyncSession
-from sqlalchemy import select
+from sqlalchemy import select, func
 from pydantic import BaseModel, Field
+from sqlalchemy.orm import selectinload
 
 from app.api.deps import get_db, get_current_user, get_optional_current_user
 from app.models.user import User
@@ -38,7 +39,7 @@ class VideoResourceResponse(BaseModel):
     thumbnail_url: Optional[str] = None
     description: Optional[str] = None
     order_index: int
-    
+
     class Config:
         from_attributes = True
 
@@ -73,22 +74,20 @@ async def get_section_videos(
     Get all video resources for a documentation section.
     Public endpoint - no authentication required.
     """
-    # Verify section exists
     section = await doc_section_crud.get(db, id=section_id)
     if not section:
         raise HTTPException(
             status_code=status.HTTP_404_NOT_FOUND,
             detail="Section not found"
         )
-    
-    # Get videos ordered by order_index
+
     result = await db.execute(
         select(VideoResource)
         .where(VideoResource.doc_section_id == section_id)
         .order_by(VideoResource.order_index)
     )
-    videos = result.scalars().all()
     
+    videos = result.scalars().all()
     return [VideoResourceResponse.model_validate(v) for v in videos]
 
 
@@ -104,9 +103,10 @@ async def scrape_videos_for_section(
     Scrape and add YouTube videos for a section.
     Uses YouTube Data API to find relevant tutorials.
     """
-    # Verify section exists
+    # FIXED: Eager load the language relationship
     section_result = await db.execute(
         select(DocSection)
+        .options(selectinload(DocSection.language))  # Add eager loading
         .where(DocSection.id == section_id)
     )
     section = section_result.scalar_one_or_none()
@@ -116,35 +116,33 @@ async def scrape_videos_for_section(
             status_code=status.HTTP_404_NOT_FOUND,
             detail="Section not found"
         )
-    
+
     # Build search query
-    query = f"{section.language.name if hasattr(section, 'language') else 'Programming'} {section.title} tutorial"
+    language_name = section.language.name if section.language else "Programming"
+    query = f"{language_name} {section.title} tutorial"
     
     logger.info(f"Scraping YouTube videos for section {section_id}: {query}")
-    
+
     try:
-        # Search YouTube
         youtube = YouTubeIntegration()
         video_data = await youtube.search_videos(
             query=query,
             max_results=scrape_request.max_results,
             order=scrape_request.order
         )
-        
-        # Get current max order_index
+
         max_order_result = await db.execute(
             select(func.max(VideoResource.order_index))
             .where(VideoResource.doc_section_id == section_id)
         )
         max_order = max_order_result.scalar() or -1
-        
-        # Save videos to database
+
         saved_videos = []
         for idx, video in enumerate(video_data):
             video_resource = VideoResource(
                 doc_section_id=section_id,
                 title=video["title"],
-                url=video["video_url"],
+                video_url=video["video_url"],  # FIXED: Use video_url not url
                 platform=video["platform"],
                 channel_name=video.get("channel_name"),
                 thumbnail_url=video.get("thumbnail_url"),
@@ -154,7 +152,7 @@ async def scrape_videos_for_section(
             )
             db.add(video_resource)
             saved_videos.append(video_resource.title)
-        
+
         await db.commit()
         
         logger.info(f"Successfully scraped {len(video_data)} videos for section {section_id}")
@@ -189,18 +187,14 @@ async def search_youtube_videos(
     try:
         youtube = YouTubeIntegration()
         search_query = f"{query} programming tutorial"
-        
         results = await youtube.search_videos(
             query=search_query,
             max_results=max_results,
             order="relevance"
         )
-        
         return [YouTubeSearchResult(**video) for video in results]
-        
     except Exception as e:
         logger.error(f"YouTube search error: {e}")
-        # Return empty list instead of error for better UX
         return []
 
 
@@ -212,19 +206,18 @@ async def add_video_to_section(
     current_user: User = Depends(get_current_user)
 ):
     """Add a video resource manually to a section."""
-    # Verify section exists
     section = await doc_section_crud.get(db, id=section_id)
     if not section:
         raise HTTPException(
             status_code=status.HTTP_404_NOT_FOUND,
             detail="Section not found"
         )
-    
+
     video_data.doc_section_id = section_id
     video = await video_resource_crud.create(db, obj_in=video_data)
     await db.commit()
     await db.refresh(video)
-    
+
     logger.info(f"User {current_user.id} added video {video.id} to section {section_id}")
     return VideoResourceResponse.model_validate(video)
 
@@ -242,16 +235,12 @@ async def delete_video(
             status_code=status.HTTP_404_NOT_FOUND,
             detail="Video not found"
         )
-    
+
     await video_resource_crud.delete(db, id=video_id)
     await db.commit()
-    
+
     logger.info(f"Video {video_id} deleted by user {current_user.id}")
     return SuccessResponse(
         message="Video deleted successfully",
         data={"video_id": str(video_id)}
     )
-
-
-# Import func for SQL functions
-from sqlalchemy import func

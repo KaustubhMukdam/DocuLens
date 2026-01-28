@@ -6,9 +6,7 @@ from uuid import UUID
 from sqlalchemy import String, Text, Integer, ForeignKey
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 from app.models.base import GUID
-
 from app.models.base import Base
-from sqlalchemy import Integer, Column
 
 
 class VideoResource(Base):
@@ -30,7 +28,17 @@ class VideoResource(Base):
     duration_seconds: Mapped[Optional[int]] = mapped_column(Integer, nullable=True)
     channel_name: Mapped[Optional[str]] = mapped_column(String(100), nullable=True)
     views: Mapped[Optional[int]] = mapped_column(Integer, nullable=True)
-    order_index = Column(Integer, nullable=True)
+    
+    # ADD THIS FIELD - Required by scraper
+    description: Mapped[Optional[str]] = mapped_column(Text, nullable=True)
+    
+    # FIX: Use Mapped instead of Column for consistency and make non-nullable with default
+    order_index: Mapped[int] = mapped_column(Integer, nullable=False, default=0)
+
+    @property
+    def url(self) -> str:
+        """Alias for video_url to match API response schema."""
+        return self.video_url  # FIXED: Was self.youtube_url (which doesn't exist)
     
     doc_section: Mapped["DocSection"] = relationship(
         "DocSection",

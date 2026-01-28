@@ -42,9 +42,10 @@ class PracticeProblem(Base):
     platform: Mapped[ProblemPlatform] = mapped_column(SQLEnum(ProblemPlatform), nullable=False)
     problem_url: Mapped[str] = mapped_column(Text, nullable=False)
     difficulty: Mapped[ProblemDifficulty] = mapped_column(SQLEnum(ProblemDifficulty), nullable=False)
+    description: Mapped[Optional[str]] = mapped_column(Text, nullable=True)
     
     # Changed: Use StringArray instead of ARRAY(String)
-    topics: Mapped[Optional[list[str]]] = mapped_column(StringArray(), nullable=True)
+    tags: Mapped[Optional[list[str]]] = mapped_column(StringArray(), nullable=True)
 
     order_index = Column(Integer, nullable=True)
     
