@@ -10,6 +10,7 @@ import {
   Play, Code, ExternalLink, Youtube, Award,
   Lightbulb, ChevronDown, ChevronUp
 } from 'lucide-react';
+import toast from 'react-hot-toast';
 
 const SectionDetail = () => {
   const { id } = useParams();

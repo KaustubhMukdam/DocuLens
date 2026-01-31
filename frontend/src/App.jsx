@@ -5,6 +5,7 @@ import { useAuthStore } from '@/store/authStore';
 import ProtectedRoute from '@/components/auth/ProtectedRoute';
 import Loading from '@/components/common/Loading';
 import { ThemeProvider } from './context/ThemeContext';
+import Toast from '@/components/common/Toast';
 
 // Pages
 import Home from '@/pages/Home';
@@ -42,6 +43,7 @@ function App() {
   return (
     <QueryClientProvider client={queryClient}>
       <ThemeProvider>
+        <Toast /> 
         <Routes>
           {/* Public Routes */}
           <Route path="/" element={<Home />} />
