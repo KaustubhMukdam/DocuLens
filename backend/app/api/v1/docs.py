@@ -117,3 +117,71 @@ async def get_section_detail(
     }
     
     return DocSectionDetailResponse(**section_dict)
+
+@router.get("/search")
+async def search_documentation(
+    q: str = Query(..., min_length=2, max_length=100, description="Search query"),
+    limit: int = Query(10, ge=1, le=50),
+    db: AsyncSession = Depends(get_db)
+):
+    """
+    Search across languages and documentation sections.
+    Returns matching languages and sections.
+    """
+    from app.models.language import Language
+    from sqlalchemy import or_
+    
+    # Search languages
+    lang_result = await db.execute(
+        select(Language)
+        .where(
+            or_(
+                Language.name.ilike(f"%{q}%"),
+                Language.description.ilike(f"%{q}%")
+            )
+        )
+        .limit(5)
+    )
+    languages = lang_result.scalars().all()
+    
+    # Search sections
+    section_result = await db.execute(
+        select(DocSection)
+        .options(selectinload(DocSection.language))
+        .where(
+            or_(
+                DocSection.title.ilike(f"%{q}%"),
+                DocSection.content_summary.ilike(f"%{q}%"),
+                DocSection.content_raw.ilike(f"%{q}%")
+            )
+        )
+        .limit(limit)
+    )
+    sections = section_result.scalars().all()
+    
+    return {
+        "query": q,
+        "languages": [
+            {
+                "id": str(lang.id),
+                "name": lang.name,
+                "slug": lang.slug,
+                "description": lang.description,
+                "logo_url": lang.logo_url,
+            }
+            for lang in languages
+        ],
+        "sections": [
+            {
+                "id": str(section.id),
+                "title": section.title,
+                "slug": section.slug,
+                "language_name": section.language.name if section.language else "Unknown",
+                "language_slug": section.language.slug if section.language else "unknown",
+                "difficulty": section.difficulty.value,
+                "content_preview": section.content_summary[:200] if section.content_summary else section.content_raw[:200],
+            }
+            for section in sections
+        ],
+        "total_results": len(languages) + len(sections)
+    }

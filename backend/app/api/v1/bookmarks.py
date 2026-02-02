@@ -8,9 +8,12 @@ from uuid import UUID
 
 from fastapi import APIRouter, Depends, HTTPException, status, Query
 from sqlalchemy.ext.asyncio import AsyncSession
+from sqlalchemy import select
+from sqlalchemy.orm import selectinload
 
 from app.api.deps import get_db, get_current_user
 from app.models.user import User
+from app.models.bookmark import Bookmark
 from app.schemas.language import BookmarkCreate, BookmarkUpdate, BookmarkResponse
 from app.schemas.response import SuccessResponse
 from app.crud.bookmark import bookmark_crud
@@ -82,37 +85,45 @@ async def create_bookmark(
 
 @router.get("", response_model=List[BookmarkResponse])
 async def get_my_bookmarks(
-    language_id: Optional[UUID] = Query(None, description="Filter by language"),
-    skip: int = Query(0, ge=0),
-    limit: int = Query(50, ge=1, le=100),
+    language_id: Optional[UUID] = None,
     db: AsyncSession = Depends(get_db),
     current_user: User = Depends(get_current_user)
 ):
-    """
-    Get all bookmarks for the current user.
-    
-    Optional filter by language_id to see bookmarks for a specific language only.
-    """
-    bookmarks = await bookmark_crud.get_by_user(
-        db,
-        user_id=current_user.id,
-        language_id=language_id,
-        skip=skip,
-        limit=limit
-    )
-    
-    # Build responses with related data
-    responses = []
-    for bookmark in bookmarks:
-        response = BookmarkResponse.model_validate(bookmark)
-        if bookmark.doc_section:
-            response.section_title = bookmark.doc_section.title
-            response.section_slug = bookmark.doc_section.slug
-            if bookmark.doc_section.language:
-                response.language_name = bookmark.doc_section.language.name
-        responses.append(response)
-    
-    return responses
+    """Get all bookmarks for the current user."""
+    try:
+        # Build query with eager loading to avoid lazy loading issues
+        query = (
+            select(Bookmark)
+            .options(
+                selectinload(Bookmark.doc_section).selectinload(DocSection.language)
+            )
+            .filter(Bookmark.user_id == current_user.id)
+            .order_by(Bookmark.created_at.desc())
+        )
+        
+        if language_id:
+            query = query.join(DocSection).filter(DocSection.language_id == language_id)
+        
+        result = await db.execute(query)
+        bookmarks = result.scalars().all()
+        
+        # Convert to response format
+        response_data = []
+        for bookmark in bookmarks:
+            response_data.append({
+                "id": bookmark.id,
+                "user_id": bookmark.user_id,  # ADD THIS LINE
+                "doc_section_id": bookmark.doc_section_id,
+                "notes": bookmark.notes,
+                "created_at": bookmark.created_at,
+                "section_title": bookmark.doc_section.title if bookmark.doc_section else "Unknown Section",
+                "language_name": bookmark.doc_section.language.name if bookmark.doc_section and bookmark.doc_section.language else "Unknown Language"
+            })
+        
+        return response_data
+    except Exception as e:
+        logger.error(f"Error fetching bookmarks: {str(e)}")
+        raise HTTPException(status_code=500, detail=str(e))
 
 
 @router.get("/{bookmark_id}", response_model=BookmarkResponse)

@@ -6,6 +6,7 @@ from typing import List, Optional
 from uuid import UUID
 from fastapi import APIRouter, Depends, HTTPException, status, Query, Body
 from sqlalchemy.ext.asyncio import AsyncSession
+from sqlalchemy import select, desc
 from pydantic import BaseModel, Field
 
 from app.api.deps import get_db, get_current_user
@@ -20,6 +21,7 @@ from app.crud.progress import progress_crud
 from app.crud.doc_section import CRUDDocSection
 from app.models.doc_section import DocSection
 from app.core.logging import logger
+from app.models.user_progress import UserProgress
 
 router = APIRouter()
 doc_section_crud = CRUDDocSection(DocSection)
@@ -234,3 +236,42 @@ async def reset_section_progress(
         message="Section progress reset successfully",
         data={"section_id": str(section_id)}
     )
+
+@router.get("/recent-sections")
+async def get_recent_sections(
+    limit: int = Query(5, ge=1, le=10),
+    db: AsyncSession = Depends(get_db),
+    current_user: User = Depends(get_current_user)
+):
+    """
+    Get recently viewed/completed sections by user.
+    Returns the last N sections the user interacted with.
+    """
+    from app.models.doc_section import DocSection
+    from sqlalchemy.orm import selectinload
+    
+    result = await db.execute(
+        select(UserProgress)
+        .where(UserProgress.user_id == current_user.id)
+        .options(
+            selectinload(UserProgress.doc_section).selectinload(DocSection.language)
+        )
+        .order_by(desc(UserProgress.updated_at))
+        .limit(limit)
+    )
+    
+    recent_progress = result.scalars().all()
+    
+    return [
+        {
+            "section_id": str(p.doc_section_id),
+            "section_title": p.doc_section.title,
+            "section_slug": p.doc_section.slug,
+            "language_name": p.doc_section.language.name if p.doc_section.language else "Unknown",
+            "language_slug": p.doc_section.language.slug if p.doc_section.language else "unknown",
+            "is_completed": p.is_completed,
+            "time_spent_seconds": p.time_spent_seconds,
+            "last_accessed": p.updated_at,
+        }
+        for p in recent_progress
+    ]

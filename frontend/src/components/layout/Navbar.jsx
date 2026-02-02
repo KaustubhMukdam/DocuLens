@@ -10,8 +10,10 @@ import {
   X, 
   Sun, 
   Moon,
-  BarChart3
+  BarChart3,
+  Bookmark
 } from 'lucide-react';
+import SearchBar from '@/components/common/SearchBar';
 
 const Navbar = () => {
   const navigate = useNavigate();
@@ -40,6 +42,10 @@ const Navbar = () => {
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center space-x-6">
+            {/* Search Bar */}
+            <div className="flex-1 max-w-md">
+              <SearchBar />
+            </div>
             <Link
               to="/dashboard"
               className="flex items-center space-x-2 text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
@@ -54,6 +60,14 @@ const Navbar = () => {
             >
               <BookOpen className="w-5 h-5" />
               <span className="font-medium">Languages</span>
+            </Link>
+
+            <Link
+              to="/bookmarks"
+              className="flex items-center space-x-2 text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
+            >
+              <Bookmark className="w-5 h-5" />
+              <span className="font-medium">Bookmarks</span>
             </Link>
 
             {/* User Menu */}
@@ -141,6 +155,15 @@ const Navbar = () => {
             >
               <BookOpen className="w-5 h-5" />
               <span>Languages</span>
+            </Link>
+
+            <Link
+              to="/bookmarks"
+              onClick={() => setIsMenuOpen(false)}
+              className="flex items-center space-x-2 px-4 py-2 rounded-lg text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800"
+            >
+              <Bookmark className="w-5 h-5" />
+              <span>Bookmarks</span>
             </Link>
 
             <Link

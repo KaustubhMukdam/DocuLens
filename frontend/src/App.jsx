@@ -17,6 +17,7 @@ import LanguageDetail from '@/pages/LanguageDetail';
 import SectionDetail from '@/pages/SectionDetail';
 import Profile from '@/pages/Profile';
 import NotFound from '@/pages/NotFound';
+import Bookmarks from '@/pages/Bookmarks';
 
 // Create QueryClient instance
 const queryClient = new QueryClient({
@@ -56,6 +57,7 @@ function App() {
             <Route path="/languages" element={<Languages />} />
             <Route path="/languages/:slug" element={<LanguageDetail />} />
             <Route path="/sections/:id" element={<SectionDetail />} />
+            <Route path="/bookmarks" element={<Bookmarks />} /> 
             <Route path="/profile" element={<Profile />} />
           </Route>
 
