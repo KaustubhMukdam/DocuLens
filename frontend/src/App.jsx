@@ -2,22 +2,22 @@ import { useEffect } from 'react';
 import { Routes, Route, Navigate } from 'react-router-dom';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'; // Add this import
 import { useAuthStore } from '@/store/authStore';
-import ProtectedRoute from '@/components/auth/ProtectedRoute';
-import Loading from '@/components/common/Loading';
+import ProtectedRoute from '@/components/auth/ProtectedRoute.jsx';
+import Loading from '@/components/common/Loading.jsx';
 import { ThemeProvider } from './context/ThemeContext';
 import Toast from '@/components/common/Toast';
 
 // Pages
-import Home from '@/pages/Home';
-import Login from '@/pages/Login';
-import Register from '@/pages/Register';
-import Dashboard from '@/pages/Dashboard';
-import Languages from '@/pages/Languages';
-import LanguageDetail from '@/pages/LanguageDetail';
-import SectionDetail from '@/pages/SectionDetail';
-import Profile from '@/pages/Profile';
-import NotFound from '@/pages/NotFound';
-import Bookmarks from '@/pages/Bookmarks';
+import Home from '@/pages/Home.jsx';
+import Login from '@/pages/Login.jsx';
+import Register from '@/pages/Register.jsx';
+import Dashboard from '@/pages/Dashboard.jsx';
+import Languages from '@/pages/Languages.jsx';
+import LanguageDetail from '@/pages/LanguageDetail.jsx';
+import SectionDetail from '@/pages/SectionDetail.jsx';
+import Profile from '@/pages/Profile.jsx';
+import NotFound from '@/pages/NotFound.jsx';
+import Bookmarks from '@/pages/Bookmarks.jsx';
 
 // Create QueryClient instance
 const queryClient = new QueryClient({
