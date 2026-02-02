@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import { Home, ArrowLeft } from 'lucide-react';
-import Navbar from '@/components/layout/Navbar';
+import Navbar from '@/components/layout/Navbar.jsx';
 
 const NotFound = () => {
   return (

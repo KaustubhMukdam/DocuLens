@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { progressAPI } from '@/api/progress';
 import { languagesAPI } from '@/api/languages';
 import { useAuthStore } from '@/store/authStore';
-import Loading from '@/components/common/Loading';
+import Loading from '@/components/common/Loading.jsx';
 import { 
   Book, TrendingUp, Award, Flame, Clock, 
   ArrowRight, Calendar, BarChart3 

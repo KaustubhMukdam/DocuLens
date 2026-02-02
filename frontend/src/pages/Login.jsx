@@ -4,7 +4,7 @@ import { useMutation } from '@tanstack/react-query';
 import toast from 'react-hot-toast';
 import { authAPI } from '@/api/auth';
 import { useAuthStore } from '@/store/authStore';
-import Button from '@/components/common/Button';
+import Button from '@/components/common/Button.jsx';
 
 const Login = () => {
   const navigate = useNavigate();

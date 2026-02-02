@@ -3,7 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { useMutation } from '@tanstack/react-query';
 import toast from 'react-hot-toast';
 import { authAPI } from '@/api/auth';
-import Button from '@/components/common/Button';
+import Button from '@/components/common/Button.jsx';
 
 const Register = () => {
   const navigate = useNavigate();

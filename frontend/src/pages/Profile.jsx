@@ -4,9 +4,9 @@ import { useAuthStore } from '@/store/authStore';
 import { progressAPI } from '@/api/progress';
 import { authAPI } from '@/api/auth';
 import toast from 'react-hot-toast';
-import Navbar from '@/components/layout/Navbar';
-import Loading from '@/components/common/Loading';
-import Button from '@/components/common/Button';
+import Navbar from '@/components/layout/Navbar.jsx';
+import Loading from '@/components/common/Loading.jsx';
+import Button from '@/components/common/Button.jsx';
 import { 
   User, Mail, Calendar, Award, Lock, Edit, 
   BookOpen, Clock, Flame, TrendingUp, Trophy,

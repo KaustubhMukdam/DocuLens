@@ -1,8 +1,8 @@
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { Link } from 'react-router-dom';
 import { bookmarksAPI } from '@/api/bookmarks';
-import Navbar from '@/components/layout/Navbar';
-import Loading from '@/components/common/Loading';
+import Navbar from '@/components/layout/Navbar.jsx';
+import Loading from '@/components/common/Loading.jsx';
 import toast from 'react-hot-toast';
 import { 
   Bookmark, Trash2, Clock, Book, 

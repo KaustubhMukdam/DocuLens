@@ -1,8 +1,8 @@
 import { useQuery } from '@tanstack/react-query';
 import { Link } from 'react-router-dom';
 import { languagesAPI } from '@/api/languages';
-import Navbar from '@/components/layout/Navbar';
-import Loading from '@/components/common/Loading';
+import Navbar from '@/components/layout/Navbar.jsx';
+import Loading from '@/components/common/Loading.jsx';
 import { ExternalLink } from 'lucide-react';
 
 const Languages = () => {

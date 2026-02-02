@@ -2,8 +2,8 @@ import { useState } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import { useParams, Link } from 'react-router-dom';
 import { languagesAPI } from '@/api/languages';
-import Loading from '@/components/common/Loading';
-import Navbar from '@/components/layout/Navbar';
+import Loading from '@/components/common/Loading.jsx';
+import Navbar from '@/components/layout/Navbar.jsx';
 import { Clock, BookOpen, Zap, Target } from 'lucide-react';
 
 const LanguageDetail = () => {

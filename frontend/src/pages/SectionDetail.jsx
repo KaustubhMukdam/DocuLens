@@ -5,8 +5,8 @@ import { sectionsAPI, videosAPI, practiceAPI } from '@/api/sections';
 import { bookmarksAPI } from '@/api/bookmarks';
 import { aiAPI } from '@/api/ai';
 import toast from 'react-hot-toast';
-import Loading from '@/components/common/Loading';
-import Button from '@/components/common/Button';
+import Loading from '@/components/common/Loading.jsx';
+import Button from '@/components/common/Button.jsx';
 import { 
   Clock, CheckCircle, ArrowLeft, BookOpen, 
   Play, Code, ExternalLink, Youtube, Award,
