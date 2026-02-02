@@ -8,7 +8,7 @@ import {
   Book, TrendingUp, Award, Flame, Clock, 
   ArrowRight, Calendar, BarChart3 
 } from 'lucide-react';
-import Navbar from '@/components/layout/Navbar';
+import Navbar from '@/components/layout/Navbar.jsx';
 
 const Dashboard = () => {
   const user = useAuthStore((state) => state.user);
