@@ -131,10 +131,12 @@ class Settings(BaseSettings):
     SENTRY_TRACES_SAMPLE_RATE: float = 0.1
     
     # CORS
-    CORS_ORIGINS: List[str] = [
-        "http://localhost:3000",
-        "http://localhost:8000",
-    ]
+    CORS_ORIGINS: str = "https://docu-lens.vercel.app"
+
+    @property
+    def cors_origins_list(self) -> List[str]:
+        """Convert comma-separated CORS origins to list."""
+        return [origin.strip() for origin in self.CORS_ORIGINS.split(",")]
     
     @field_validator("CORS_ORIGINS", mode="before")
     @classmethod
