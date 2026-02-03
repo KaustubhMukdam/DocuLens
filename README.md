@@ -1,25 +1,26 @@
 # 🚀 DocuLens - AI-Powered Documentation Learning Platform
 
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![FastAPI](https://img.shields.io/badge/FastAPI-0.109.0-009688.svg?style=flat&logo=FastAPI&logoColor=white)](https://fastapi.tiangolo.com)
-[![Flutter](https://img.shields.io/badge/Flutter-3.22+-02569B.svg?style=flat&logo=Flutter&logoColor=white)](https://flutter.dev)
-[![Python](https://img.shields.io/badge/Python-3.11+-3776AB.svg?style=flat&logo=python&logoColor=white)](https://www.python.org)
+*"Transform lengthy documentation into personalized learning journeys"*
 
-> *"Transform lengthy documentation into personalized learning journeys"*
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
+[![Python 3.11+](https://img.shields.io/badge/python-3.11+-blue.svg)](https://www.python.org/downloads/)
+[![React](https://img.shields.io/badge/react-18.2+-61DAFB.svg)](https://reactjs.org/)
+[![FastAPI](https://img.shields.io/badge/FastAPI-0.109+-009688.svg)](https://fastapi.tiangolo.com/)
 
 ---
 
 ## 📖 Table of Contents
 
-- [Overview](#overview)
-- [Problem Statement](#problem-statement)
-- [Key Features](#key-features)
-- [Tech Stack](#tech-stack)
-- [Getting Started](#getting-started)
-- [Project Structure](#project-structure)
-- [Documentation](#documentation)
-- [Contributing](#contributing)
-- [License](#license)
+- [Overview](#-overview)
+- [Problem Statement](#-problem-statement)
+- [Key Features](#-key-features)
+- [Tech Stack](#-tech-stack)
+- [Getting Started](#-getting-started)
+- [Project Structure](#-project-structure)
+- [Screenshots](#-screenshots)
+- [Roadmap](#-roadmap)
+- [Contributing](#-contributing)
+- [License](#-license)
 
 ---
 
@@ -30,22 +31,27 @@
 - **Quick Path** (20-30% content): Essential concepts for rapid learning
 - **Deep Path** (100% content): Comprehensive coverage with practice integration
 
-### The Problem We Solve
+---
 
-- 📚 **Information Overload**: Official docs are comprehensive but time-consuming
-- 🤖 **AI Unreliability**: ChatGPT/Claude can hallucinate or provide outdated info
+## 💡 Problem Statement
+
+### The Challenges Developers Face:
+
+- 📚 **Information Overload**: Official docs are comprehensive but time-consuming (1000+ pages)
+- 🤖 **AI Unreliability**: ChatGPT/Claude can hallucinate or provide outdated information
 - 🔗 **Fragmented Resources**: Documentation, videos, and practice problems are scattered
-- 📊 **No Progress Tracking**: Hard to maintain learning momentum
-- 📱 **Poor Mobile Experience**: Most documentation isn't mobile-optimized
+- 📊 **No Progress Tracking**: Hard to maintain learning momentum and measure growth
+- 🎯 **One-Size-Fits-All**: No personalization based on skill level or time constraints
 
-### Our Solution
+### Our Solution:
 
-DocuLens provides:
+DocuLens provides a **unified learning experience** that combines:
+
 - ✅ **Source-Verified Content**: Every summary links back to official documentation
 - ✅ **Dual Learning Paths**: Choose between Quick (8-15 hrs) and Deep (40-60 hrs)
 - ✅ **Integrated Practice**: LeetCode, HackerRank problems mapped to topics
-- ✅ **Cross-Platform**: Seamless experience on Web, iOS, and Android
-- ✅ **Progress Tracking**: Complete analytics and achievement system
+- ✅ **Video Integration**: Curated YouTube tutorials for visual learners
+- ✅ **Progress Analytics**: Complete tracking with streaks and achievements
 
 ---
 
@@ -53,71 +59,79 @@ DocuLens provides:
 
 ### For Learners
 
-- **🎯 Personalized Learning Paths**
-  - Skill-based recommendations (Beginner/Intermediate/Advanced)
-  - Adaptive difficulty progression
-  - Estimated time for each section
+#### **📚 Dual Learning Paths**
+- **Quick Path**: 20-30% of content - essential concepts only
+- **Deep Path**: 100% comprehensive coverage
+- Skill-based recommendations (Beginner/Intermediate/Advanced)
+- Estimated time for each section
 
-- **📝 AI-Curated Summaries**
-  - Powered by Claude Sonnet 4
-  - 95%+ accuracy with source attribution
-  - View full documentation anytime
+#### **🤖 AI-Curated Summaries**
+- Powered by **Claude Sonnet 4** and **Groq**
+- 95%+ accuracy with source attribution
+- 2-minute summaries of 50-page documentation
+- View full documentation anytime
 
-- **💪 Practice Integration**
-  - Curated problems from LeetCode, HackerRank
-  - Difficulty mapping (Easy/Medium/Hard)
-  - Track solved problems
+#### **💪 Practice Integration**
+- Curated problems from LeetCode, HackerRank
+- Difficulty mapping (Easy/Medium/Hard)
+- Topic-aligned practice
+- Track solved problems
 
-- **📊 Progress Analytics**
-  - Time spent tracking
-  - Completion statistics
-  - Learning streak system
-  - Achievement badges
+#### **📺 Video Resources**
+- Auto-scraped YouTube tutorials
+- Relevance-ranked videos
+- Multiple learning styles supported
 
-- **🔍 Smart Search**
-  - Semantic search across all content
-  - Filter by language, difficulty, topic
-  - Recent searches history
+#### **📊 Progress Analytics**
+- Time spent tracking
+- Completion statistics
+- Learning streak system
+- Achievement badges
+- Personal dashboard
 
-### For the Platform
+#### **🔍 Smart Search**
+- Semantic search across all content
+- Filter by language, difficulty, topic
+- Recent searches history
 
-- **🤖 Automated Content Pipeline**
-  - Scheduled scraping of official docs
-  - AI-powered summarization
-  - Version control for updates
-
-- **🔐 Secure & Scalable**
-  - JWT authentication
-  - Rate limiting
-  - Horizontal scaling ready
-
-- **📱 Cross-Platform**
-  - Flutter for Web, iOS, Android
-  - Consistent experience across devices
-  - Offline mode support (coming soon)
+#### **🌙 Modern UX**
+- Full dark mode support
+- Responsive design (mobile-first)
+- Clean, intuitive interface
+- Accessibility features
 
 ---
 
 ## 💻 Tech Stack
 
 ### Backend
-- **Framework**: FastAPI 0.109.0
-- **Database**: PostgreSQL 15+ with Redis caching
-- **AI**: Anthropic Claude API (Sonnet 4)
+- **Framework**: FastAPI 0.115.6
+- **Database**: PostgreSQL 15+ (NeonDB)
+- **Caching**: Redis 7+
+- **AI Services**: 
+  - Anthropic Claude API (Sonnet 4)
+  - Groq (llama-3.3-70b)
 - **Task Queue**: Celery + RabbitMQ
 - **Scraping**: BeautifulSoup4, Scrapy, Playwright
+- **ORM**: SQLAlchemy 2.0 (async)
+- **Authentication**: JWT with passlib
 
 ### Frontend
-- **Framework**: Flutter 3.22+ (Web, iOS, Android)
-- **State Management**: Riverpod 2.4+
-- **Networking**: Dio 5.4+ with Retrofit
-- **Local Storage**: Hive 2.2+
+- **Framework**: React 18.2+ with Vite 7.3
+- **State Management**: 
+  - React Query (server state)
+  - Zustand (client state)
+  - Context API (theme)
+- **Styling**: TailwindCSS 3.4
+- **Routing**: React Router v6
+- **UI Components**: Custom + Lucide Icons
+- **HTTP Client**: Axios
 
-### DevOps
-- **Containerization**: Docker + Docker Compose
-- **CI/CD**: GitHub Actions
-- **Hosting**: AWS / DigitalOcean
-- **Monitoring**: Sentry, Prometheus, Grafana
+### DevOps & Tools
+- **Version Control**: Git + GitHub
+- **Package Management**: pip (backend), npm (frontend)
+- **Code Quality**: Black, ESLint, Prettier
+- **Environment**: Python 3.11+, Node.js 20+
 
 ---
 
@@ -126,40 +140,32 @@ DocuLens provides:
 ### Prerequisites
 
 - Python 3.11+
-- Node.js 18+ (for Flutter web)
+- Node.js 20+
 - PostgreSQL 15+
-- Redis 7+
-- Flutter SDK 3.22+
-- Docker & Docker Compose (optional)
+- Redis 7+ (optional, for caching)
 
-### Quick Start with Docker
+### Quick Start
+
+#### 1. Clone the Repository
 
 ```bash
-# Clone the repository
 git clone https://github.com/KaustubhMukdam/DocuLens.git
 cd DocuLens
-
-# Copy environment files
-cp backend/.env.example backend/.env
-cp frontend/.env.example frontend/.env
-
-# Start all services
-docker-compose up -d
-
-# Backend will be available at http://localhost:8000
-# Frontend will be available at http://localhost:3000
 ```
 
-### Manual Setup
-
-#### Backend Setup
+#### 2. Backend Setup
 
 ```bash
 cd backend
 
 # Create virtual environment
 python -m venv venv
-source venv/bin/activate  # On Windows: venv\Scripts\activate
+
+# Activate virtual environment
+# Windows:
+venv\Scripts\activate
+# Mac/Linux:
+source venv/bin/activate
 
 # Install dependencies
 pip install -r requirements.txt
@@ -170,40 +176,31 @@ cp .env.example .env
 
 # Initialize database
 alembic upgrade head
-python scripts/init_db.py
 
 # Run the server
 uvicorn app.main:app --reload --host 0.0.0.0 --port 8000
 ```
 
-#### Frontend Setup
+**Backend will be available at:** http://localhost:8000  
+**API Documentation:** http://localhost:8000/docs
+
+#### 3. Frontend Setup
 
 ```bash
 cd frontend
 
-# Get Flutter dependencies
-flutter pub get
+# Install dependencies
+npm install
 
-# Run code generation (if needed)
-flutter pub run build_runner build --delete-conflicting-outputs
+# Set up environment variables
+cp .env.example .env
+# Edit .env (usually just needs VITE_API_BASE_URL)
 
-# Run the app
-flutter run -d chrome  # For web
-flutter run -d ios     # For iOS
-flutter run -d android # For Android
+# Run development server
+npm run dev
 ```
 
-### Initial Data Seeding
-
-```bash
-cd backend
-
-# Seed initial languages
-python scripts/seed_data.py
-
-# Start scraping (optional - runs in background)
-python scripts/run_scraper.py --language python
-```
+**Frontend will be available at:** http://localhost:5173
 
 ---
 
@@ -211,68 +208,82 @@ python scripts/run_scraper.py --language python
 
 ```
 DocuLens/
-├── backend/           # FastAPI backend
-├── frontend/          # Flutter frontend
-├── docs/              # Project documentation
-├── scripts/           # Utility scripts
-├── .github/           # GitHub workflows
-└── docker-compose.yml # Multi-container setup
+├── backend/                 # FastAPI backend
+│   ├── app/
+│   │   ├── api/            # API endpoints
+│   │   │   └── v1/         # API version 1
+│   │   ├── core/           # Core functionality
+│   │   ├── crud/           # Database operations
+│   │   ├── db/             # Database config
+│   │   ├── models/         # SQLAlchemy models
+│   │   ├── schemas/        # Pydantic schemas
+│   │   └── services/       # Business logic
+│   ├── alembic/            # Database migrations
+│   ├── requirements.txt    # Python dependencies
+│   └── .env.example        # Environment template
+│
+├── frontend/                # React frontend
+│   ├── public/             # Static assets
+│   ├── src/
+│   │   ├── api/            # API client
+│   │   ├── components/     # React components
+│   │   ├── context/        # React contexts
+│   │   ├── pages/          # Page components
+│   │   ├── store/          # Zustand stores
+│   │   └── utils/          # Utility functions
+│   ├── package.json        # Node dependencies
+│   └── vite.config.js      # Vite configuration
+│
+├── docs/                    # Documentation
+├── .gitignore
+└── README.md               # This file
 ```
 
-For detailed structure, see [ARCHITECTURE.md](docs/ARCHITECTURE.md)
-
 ---
 
-## 📚 Documentation
-
-- **[Architecture](docs/ARCHITECTURE.md)**: System design and architecture
-- **[API Documentation](docs/API.md)**: Complete API reference
-- **[PRD](docs/PRD.md)**: Product Requirements Document
-- **[SDLC](docs/SDLC.md)**: Complete Software Development Life Cycle
-- **[Deployment](docs/DEPLOYMENT.md)**: Deployment guides
-- **[Contributing](docs/CONTRIBUTING.md)**: How to contribute
-
----
-
-## 🎨 Screenshots
-
-> *Coming Soon - Add screenshots once UI is implemented*
-
----
 
 ## 🗺️ Roadmap
 
-### Phase 1: MVP (Months 1-3) ✅ In Progress
-- [x] Authentication system
-- [x] Documentation scraping pipeline
-- [x] AI summarization
-- [x] Quick & Deep learning paths
-- [ ] Flutter app (Web, iOS, Android)
-- [ ] Progress tracking
+### ✅ Phase 1: MVP (Completed)
 
-### Phase 2: Enhancement (Months 4-6)
-- [ ] Video integration (YouTube API)
-- [ ] Code playground
-- [ ] Community discussions
-- [ ] AI chatbot for Q&A
-- [ ] Offline mode
-- [ ] Custom learning paths
+- ✅ Authentication system (JWT)
+- ✅ Documentation scraping pipeline
+- ✅ AI summarization (Claude + Groq)
+- ✅ Quick & Deep learning paths
+- ✅ React frontend with modern UI
+- ✅ Progress tracking & analytics
+- ✅ Video resource integration
+- ✅ Practice problem scraping
+- ✅ Bookmark system
+- ✅ Search functionality
+- ✅ Dark mode support
 
-### Phase 3: Growth (Months 7-12)
-- [ ] Achievements & gamification
-- [ ] Mentor matching system
-- [ ] Team/Enterprise features
-- [ ] API for educational institutions
-- [ ] Mobile apps on stores
-- [ ] Premium subscription
+### 🚀 Phase 2: Production & Enhancement (In Progress)
+
+- ⏳ Production deployment (Vercel + Render)
+- ⏳ Additional languages (JavaScript, React, Flutter, Go)
+- ⏳ Advanced analytics dashboard
+- ⏳ Email notifications
+- ⏳ Export progress reports
+
+### 🔮 Phase 3: Growth (Future Scope)
+
+- 🔜 Community discussions forum
+- 🔜 Mentor matching system
+- 🔜 Team/Enterprise features
+- 🔜 Mobile apps (iOS & Android)
+- 🔜 API for educational institutions
+- 🔜 Premium subscription tier
+- 🔜 Gamification & achievements
+- 🔜 Code playground integration
+- 🔜 Offline mode support
+- 🔜 Custom learning path creation
 
 ---
 
 ## 🤝 Contributing
 
-We welcome contributions! Please see our [Contributing Guide](docs/CONTRIBUTING.md) for details.
-
-### Development Workflow
+Contributions are welcome! Please follow these steps:
 
 1. Fork the repository
 2. Create a feature branch (`git checkout -b feature/AmazingFeature`)
@@ -283,16 +294,7 @@ We welcome contributions! Please see our [Contributing Guide](docs/CONTRIBUTING.
 ### Code Style
 
 - **Backend**: Follow PEP 8, use Black for formatting
-- **Frontend**: Follow Dart style guide, use `flutter analyze`
-
----
-
-## 📊 Project Stats
-
-- **Languages**: Python, Dart
-- **Target Users**: 10M+ developers worldwide
-- **Initial Focus**: Python, Flutter, JavaScript, React
-- **Goal**: Reduce learning time by 60%
+- **Frontend**: Follow Airbnb React Style Guide, use ESLint + Prettier
 
 ---
 
@@ -302,32 +304,37 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ---
 
-## 👥 Team
+## 👥 Author
 
-**Project Lead & Developer**: Kaustubh Mukdam
+**Kaustubh Mukdam**
+
 - GitHub: [@KaustubhMukdam](https://github.com/KaustubhMukdam)
+- LinkedIn: [Kaustubh Mukdam](https://www.linkedin.com/in/kaustubh-mukdam/)
 - Email: kaustubhmukdam7@gmail.com
 
 ---
 
 ## 🙏 Acknowledgments
 
-- [Anthropic](https://www.anthropic.com/) for Claude AI API
-- [FastAPI](https://fastapi.tiangolo.com/) for the amazing framework
-- [Flutter](https://flutter.dev/) for cross-platform capabilities
+- FastAPI for the amazing framework
+- Anthropic for Claude AI API
+- React for the frontend library
 - All open-source contributors
 
 ---
 
 ## 📞 Support
 
-- **Documentation**: [docs.doculens.dev](https://docs.doculens.dev)
 - **Issues**: [GitHub Issues](https://github.com/KaustubhMukdam/DocuLens/issues)
 - **Discussions**: [GitHub Discussions](https://github.com/KaustubhMukdam/DocuLens/discussions)
 - **Email**: kaustubhmukdam7@gmail.com
 
 ---
 
-**Made with ❤️ for developers, by developers**
+<div align="center">
 
-⭐ Star us on GitHub if you find this project useful!
+**Made with ❤️ for developers, by a developer**
+
+⭐ Star this repo if you find it useful!
+
+</div>
