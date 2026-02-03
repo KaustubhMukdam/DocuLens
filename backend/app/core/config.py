@@ -3,7 +3,7 @@ Application configuration using Pydantic settings.
 Reads configuration from environment variables.
 """
 
-from typing import List, Optional
+from typing import List, Optional, Union
 from pydantic import AnyHttpUrl, EmailStr, field_validator
 from pydantic_settings import BaseSettings, SettingsConfigDict
 
@@ -131,20 +131,27 @@ class Settings(BaseSettings):
     SENTRY_TRACES_SAMPLE_RATE: float = 0.1
     
     # CORS
-    CORS_ORIGINS: str = "https://docu-lens.vercel.app"
-
-    @property
-    def cors_origins_list(self) -> List[str]:
-        """Convert comma-separated CORS origins to list."""
-        return [origin.strip() for origin in self.CORS_ORIGINS.split(",")]
+    # Accept both string and list
+    CORS_ORIGINS: Union[str, List[str]] = "http://localhost:3000"
     
-    @field_validator("CORS_ORIGINS", mode="before")
+    @field_validator('CORS_ORIGINS', mode='before')
     @classmethod
     def parse_cors_origins(cls, v):
         """Parse CORS origins from string or list."""
         if isinstance(v, str):
+            # If it's a string, split by comma
             return [origin.strip() for origin in v.split(",")]
+        elif isinstance(v, list):
+            # If it's already a list, just strip whitespace
+            return [origin.strip() for origin in v]
         return v
+    
+    @property
+    def cors_origins_list(self) -> List[str]:
+        """Get CORS origins as a list."""
+        if isinstance(self.CORS_ORIGINS, str):
+            return [origin.strip() for origin in self.CORS_ORIGINS.split(",")]
+        return self.CORS_ORIGINS
     
     # Rate Limiting
     RATE_LIMIT_PER_MINUTE: int = 100
